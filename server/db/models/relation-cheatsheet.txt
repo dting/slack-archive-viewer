@@ -1,0 +1,28 @@
+
+
+Channel
+-------
+has many          messages                                 as MessagesChannelIdFkeys 
+belongs to many   teams                                    as MessageTeams 
+belongs to many   users                                    as MessageUsers 
+
+
+Message
+-------
+belongs to        channels                                 as Channel 
+belongs to        teams                                    as Team 
+belongs to        users                                    as User 
+
+
+Team
+----
+has many          messages                                 as MessagesTeamIdFkeys 
+belongs to many   channels                                 as MessageChannels 
+belongs to many   users                                    as MessageUsers 
+
+
+User
+----
+has many          messages                                 as MessagesUserIdFkeys 
+belongs to many   channels                                 as MessageChannels 
+belongs to many   teams                                    as MessageTeams 

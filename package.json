@@ -1,0 +1,36 @@
+{
+  "name": "slarchiviewer",
+  "version": "1.0.0",
+  "description": "Slack Archive Viewer",
+  "main": "index.js",
+  "scripts": {
+    "parse": "rimraf tmp && node export-parser/index.js",
+    "lint:client": "eslint client",
+    "lint:server": "eslint server",
+    "lint:parser": "eslint export-parser",
+    "lint": "npm run lint:client & npm run lint:server & npm run lint:parser",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dennis Ting (dennisting@gmail.com)",
+  "repository": "git@github.com:dting/slarchiviewer.git",
+  "license": "ISC",
+  "dependencies": {
+    "adm-zip": "^0.4.7",
+    "bluebird": "^3.4.6",
+    "del": "^2.2.2",
+    "lodash": "^4.17.2",
+    "minimist": "^1.2.0",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
+    "rimraf": "^2.5.4",
+    "sequelize": "^3.27.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.12.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0"
+  }
+}
