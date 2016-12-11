@@ -1,0 +1,32 @@
+.loading {
+  display         : flex;
+  width           : 50px;
+  height          : 20px;
+  align-items     : center;
+  justify-content : space-around;
+
+  .dot {
+    width                     : 8px;
+    height                    : 8px;
+    border                    : 2px solid $accent-color;
+    border-radius             : 50%;
+    animation-duration        : 900ms;
+    animation-iteration-count : infinite;
+    animation-name            : SHRINK_OUT;
+    animation-timing-function : ease;
+    transform                 : scale(0);
+    transform-origin          : center center;
+
+    &.left {
+      animation-delay : 300ms;
+    }
+
+    &.center {
+      animation-delay : 0;
+    }
+
+    &.right {
+      animation-delay : 600ms;
+    }
+  }
+}

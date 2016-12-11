@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono');
+
+@mixin subheading-font($font-size: 14px, $font-weight: 400) {
+  font-family : 'Lato', sans-serif;
+  font-weight : $font-weight;
+  font-size   : $font-size;
+}
+
+@mixin heading-font($font-size: 14px, $font-weight: 700) {
+  font-family : 'Lato', sans-serif;
+  font-weight : $font-weight;
+  font-size   : $font-size;
+}

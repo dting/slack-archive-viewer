@@ -1,0 +1,10 @@
+@import './ChannelList/channel-list';
+@import './UserMenu/user-menu';
+
+.side-bar {
+  display          : flex;
+  width            : $side-bar__width;
+  color            : $side-bar__text;
+  background-color : $side-bar__background;
+  flex-direction   : column;
+}

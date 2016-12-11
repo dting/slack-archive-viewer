@@ -1,6 +1,6 @@
 const path = require('path');
 
-const tmpDir = path.resolve(__dirname, '../tmp');
+const zipTmpDir = path.resolve(__dirname, '../ztmp');
 const prompts = {
   help: `
 Usage:
@@ -16,6 +16,6 @@ Usage:
 };
 
 module.exports = {
-  tmpDir,
+  zipTmpDir,
   prompts,
 };

@@ -23,6 +23,16 @@ module.exports = function exports(sequelize, DataTypes) {
       field: 'created',
       allowNull: false,
     },
+    topic: {
+      type: DataTypes.JSONB,
+      field: 'topic',
+      allowNull: false,
+    },
+    purpose: {
+      type: DataTypes.JSONB,
+      field: 'purpose',
+      allowNull: false,
+    },
     isArchived: {
       type: DataTypes.BOOLEAN,
       field: 'is_archived',

@@ -6,10 +6,17 @@ const baseSettings = {
   root: path.normalize(`${__dirname}/../../..`),
   port: process.env.PORT || 9000,
   ip: process.env.IP || '0.0.0.0',
+  secrets: {
+    session: process.env.APP_SECRET || 'app-secret',
+  },
+  slack: {
+    clientID: process.env.SLACK_ID || 'id',
+    clientSecret: process.env.SLACK_SECRET || 'secret',
+    callbackURL: `${process.env.DOMAIN || ''}/auth/slack/callback`,
+  },
 };
 
 let environmentSettings;
-/* eslint-disable global-require */
 switch (baseSettings.env) {
   case 'production':
     environmentSettings = _.merge(baseSettings, require('./production'));
@@ -19,6 +26,5 @@ switch (baseSettings.env) {
     environmentSettings = _.merge(baseSettings, require('./development'));
     break;
 }
-/* eslint-enable */
 
 module.exports = environmentSettings;

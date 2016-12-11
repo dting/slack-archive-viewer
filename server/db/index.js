@@ -11,4 +11,6 @@ const db = {
   sequelize,
 };
 
+db.SAVUser = db.sequelize.import('../api/user/user.model');
+
 module.exports = Object.assign({}, db, models);

@@ -1,0 +1,14 @@
+@import './Messages/messages';
+@import "./ToolBar/tool-bar";
+
+.channel {
+  display        : flex;
+  flex           : 1;
+  flex-direction : column;
+
+  &__contents {
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+  }
+}

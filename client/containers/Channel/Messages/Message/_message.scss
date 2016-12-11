@@ -1,0 +1,90 @@
+$channel-action__text: rgb(158, 159, 166);
+$mention__text: lighten(rgb(52, 130, 181), 10);
+
+.message {
+  display: flex;
+  padding: 3px 0;
+  flex-shrink: 0;
+  word-wrap: break-word;
+
+  &__meta {
+    width: 38px;
+    min-width: 38px;
+
+    &__avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 4px;
+    }
+  }
+
+  &__body {
+    display: flex;
+    margin-left: 15px;
+    flex-direction: column;
+    line-height: 19px;
+    flex: 1;
+    overflow-x: hidden;
+
+    .message__info {
+      display: table;
+
+      &__username {
+        @include heading-font(15px, 900);
+        display: table-cell;
+      }
+
+      &__time {
+        @include subheading-font(12px, 300);
+        display: table-cell;
+        padding-left: 10px;
+      }
+    }
+
+    pre {
+      padding: 12.5px;
+      background: white;
+      font-family: 'Fira Mono', monospace;
+      font-size: 12px;
+      border-radius: 4px;
+      border: 1px $channel-action__text solid;
+      white-space: pre;
+      white-space: pre-wrap;
+      overflow-x: auto;
+
+      code {
+        background: none;
+        padding: none;
+        border: none;
+      }
+    }
+
+    code {
+      font-family: 'Fira Mono', monospace;
+      font-size: 12px;
+      white-space: pre;
+      white-space: pre-wrap;
+      background: #faf8f0;
+      padding: 2px;
+      border: 1px solid #bebab0;
+      border-radius: 2px;
+    }
+
+    .channel_archive,
+    .channel_join,
+    .channel_leave,
+    .channel_purpose {
+      color: $channel-action__text;
+      font-style: italic;
+    }
+
+    .slack-user {
+      font-style: italic;
+      color: $mention__text;
+
+      &::before {
+        content: '@';
+      }
+    }
+  }
+}

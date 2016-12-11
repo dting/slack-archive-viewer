@@ -21,6 +21,8 @@ const createOrUpdateChannel = function createOrUpdateChannel(db, maps) {
       slackChannelId: entry.id,
       channelName: entry.name,
       created: new Date(+entry.created * 1000),
+      topic: entry.topic,
+      purpose: entry.purpose,
       isArchived: entry.is_archived,
     })
     .then(createAssociations(Channel, team, people, bots, entry));

@@ -1,0 +1,16 @@
+.channel-status-icon {
+  &--archived {
+    width: 15px;
+    font-size: 0.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &--active {
+    width: 15px;
+    display: flex;
+    justify-content: center;
+    font-weight: 300;
+  }
+}

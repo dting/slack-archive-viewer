@@ -4,7 +4,7 @@ const fs = require('fs');
 const minimist = require('minimist');
 const path = require('path');
 
-const { tmpDir, prompts } = require('./constants');
+const { zipTmpDir, prompts } = require('./constants');
 const handleTeam = require('./handle-team');
 const handleUsers = require('./handle-users');
 const handleChannels = require('./handle-channels');
@@ -28,15 +28,15 @@ if (!exportFile) {
 }
 
 const zip = new AdmZip(path.resolve(exportFile));
-zip.extractAllTo(tmpDir);
+zip.extractAllTo(zipTmpDir);
 
 /** Callback to delete tmp directory upon completion or error */
 const cleanup = function cleanup(exitCode = 0) {
-  del([tmpDir]).then(() => process.exit(exitCode));
+  del([zipTmpDir]).then(() => process.exit(exitCode));
 };
 
-const users = require(`${tmpDir}/users.json`);
-const channels = require(`${tmpDir}/channels.json`);
+const users = require(`${zipTmpDir}/users.json`);
+const channels = require(`${zipTmpDir}/channels.json`);
 
 if (!users.length) {
   console.log(prompts.nousers);
@@ -47,9 +47,9 @@ const messages = [];
 zip.getEntries()
   .filter(entry => entry.isDirectory)
   .forEach(({ entryName }) => {
-    const files = fs.readdirSync(`${tmpDir}/${entryName}`);
+    const files = fs.readdirSync(`${zipTmpDir}/${entryName}`);
     const channelName = entryName.slice(0, entryName.length - 1);
-    messages.push([channelName, files.map(file => `${tmpDir}/${entryName}${file}`)]);
+    messages.push([channelName, files.map(file => `${zipTmpDir}/${entryName}${file}`)]);
   });
 
 const maps = {};

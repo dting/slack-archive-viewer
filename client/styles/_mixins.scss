@@ -1,0 +1,55 @@
+@mixin centered($direction: row) {
+  display         : flex;
+  align-items     : center;
+  flex-direction  : $direction;
+  justify-content : center;
+}
+
+@mixin gradient-bg($c1: $primary-color, $c2:$primary-color-3, $c3:$primary-color-1) {
+  background       : linear-gradient(
+                       45deg,
+                       $c1,
+                       $c2,
+                       $c3
+                     );
+  background-color : $c2;
+}
+
+@mixin no-outline() {
+  &,
+  &:active,
+  &:focus,
+  &:hover {
+    outline : none;
+  }
+}
+
+@mixin overflow-ellipsis() {
+  overflow      : hidden;
+  text-overflow : ellipsis;
+  white-space   : nowrap;
+}
+
+@mixin rounded-button($text: $accent-color-3, $text-hover: $primary-color, $color: $accent-color-3) {
+  @include        transition();
+  @include        no-outline();
+  @include centered();
+  width         : 150px;
+  padding       : 7px 14px;
+  color         : $text;
+  border        : 4px solid $color;
+  border-radius : 20px;
+  background    : none;
+  font-size     : 14px;
+  cursor        : pointer;
+
+  &:focus,
+  &:hover {
+    color      : $text-hover;
+    background : $color;
+  }
+}
+
+@mixin transition($type:all, $speed:300ms, $ease: ease-out) {
+  transition : $type $speed $ease;
+}

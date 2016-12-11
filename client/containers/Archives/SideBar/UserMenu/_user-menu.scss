@@ -1,0 +1,67 @@
+$menu__background : #fff;
+
+.user_menu {
+  display  : flex;
+  position : relative;
+  width    : $side-bar__width;
+
+  &__toggle {
+    @include           no-outline();
+    @include           transition(all, 0.4s);
+    z-index          : $z-index-top-higher;
+    display          : block;
+    height           : $header__height;
+    color            : $side-bar__text--active;
+    border           : none;
+    background-color : $user-menu__background;
+    flex             : 1;
+
+    &.open,
+    &:focus,
+    &:hover {
+      background-color : $user-menu__background--hover;
+      cursor           : pointer;
+    }
+
+    &_info {
+      @include   overflow-ellipsis();
+      @include   subheading-font();
+    }
+  }
+
+  &__dropdown {
+    @include           transition();
+    z-index          : $z-index-top;
+    display          : flex;
+    position         : absolute;
+    top              : $side-bar__item__height * -2;
+    left             : 0;
+    width            : $side-bar__width;
+    border-right     : 1px $user-menu__background--hover solid;
+    background-color : $menu__background;
+    flex-direction   : column;
+
+    &.open {
+      top : $header__height;
+    }
+  }
+
+  &__item {
+    @include      transition();
+    @include      no-outline();
+    @include      subheading-font();
+    display     : flex;
+    height      : $side-bar__item__height;
+    padding     : 0 15px;
+    color       : $user-menu__background--hover;
+    border      : none;
+    background  : none;
+    align-items : center;
+    cursor      : pointer;
+
+    &:focus,
+    &:hover {
+      background-color : $user-menu__background--active;
+    }
+  }
+}

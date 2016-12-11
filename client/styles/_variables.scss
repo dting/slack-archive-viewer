@@ -1,0 +1,65 @@
+// Base16 - Ocean - http://chriskempson.github.io/base16/#ocean
+
+$base16-00                     : #2B303B;
+$base16-01                     : #343D46;
+$base16-02                     : #4F5B66;
+$base16-03                     : #65737E;
+$base16-04                     : #A7ADBA;
+$base16-05                     : #C0C5CE;
+$base16-06                     : #DFE1E8;
+$base16-07                     : #EFF1F5;
+$base16-red                    : #f2777a;
+$base16-orange                 : #f99157;
+$base16-yellow                 : #ffcc66;
+$base16-green                  : #99cc99;
+$base16-aqua                   : #66cccc;
+$base16-blue                   : #6699cc;
+$base16-purple                 : #cc99cc;
+$base16-brown                  : #AB7967;
+
+// Slack Ochin
+
+$side-bar__background          : rgb(49, 62, 77);
+$side-bar__item--hover         : rgb(64, 75, 90);
+$side-bar__item--active        : rgb(106, 153, 198);
+$user-menu__background         : rgb(49, 62, 77);
+$user-menu__background--hover  : rgb(45, 56, 71);
+$user-menu__background--active : rgb(70, 165, 223);
+$side-bar__text                : rgb(172, 177, 183);
+$side-bar__text--active        : white;
+
+// App Theme
+
+$primary-color                 : darken($base16-blue, 20%);
+$primary-color-1               : lighten($primary-color, 20%);
+$primary-color-2               : darken($primary-color, 20%);
+$primary-color-3               : lighten($primary-color, 10%);
+$accent-color                  : $base16-green;
+$accent-color-1                : lighten($accent-color, 20%);
+$accent-color-2                : darken($accent-color, 20%);
+$accent-color-3                : lighten($accent-color, 10%);
+$warning-color                 : $base16-yellow;
+$warning-color-1               : lighten($warning-color, 20%);
+$warning-color-2               : darken($warning-color, 20%);
+$warning-color-3               : lighten($warning-color, 10%);
+$danger-color                  : $base16-red;
+$danger-color-1                : lighten($danger-color, 20%);
+$danger-color-2                : darken($danger-color, 20%);
+$danger-color-3                : lighten($danger-color, 10%);
+$text-dark                     : $base16-00;
+$text-light                    : $base16-07;
+$body-bg                       : $base16-07;
+$border                        : $base16-04;
+$border-focus                  : darken($border, 30%);
+
+// Sizing
+
+$header__height                : 70px;
+$side-bar__width               : 220px;
+$side-bar__item__height        : 25px;
+
+// Z-Indices
+
+$z-index-top                   : 10;
+$z-index-top-higher            : 100;
+$z-index-top-highest           : 1000;

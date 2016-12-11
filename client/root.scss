@@ -1,0 +1,58 @@
+@import "./styles/resets",
+        "./styles/vendors",
+        "./styles/mixins",
+        "./styles/animations",
+        "./styles/fonts",
+        "./styles/variables",
+        "./components/components",
+        "./containers/containers";
+
+* {
+  box-sizing : border-box;
+}
+
+body {
+  width            : 100vw;
+  height           : 100vh;
+  margin           : 0;
+  color            : $text-dark;
+  background-color : $body-bg;
+  font-family      : 'Lato',
+                     'Helvetica Neue',
+                     'Helvetica',
+                     sans-serif;
+  font-size: 15px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  width  : 100vw;
+  height : 100vh;
+}
+
+a {
+  color: rgb(52, 130, 181);
+}
+
+.page_container {
+  display   : flex;
+  width     : 100%;
+  height    : 100%;
+  overflow  : hidden;
+  flex-flow : column nowrap;
+}
+
+// App wide style
+
+.brand__small {
+  font-size      : 18px;
+  font-weight    : bolder;
+  letter-spacing : -1px;
+}
+
+.brand__medium {
+  font-size      : 36px;
+  font-weight    : bolder;
+  letter-spacing : -2px;
+}

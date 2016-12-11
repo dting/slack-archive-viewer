@@ -1,0 +1,23 @@
+@keyframes FADE_IN {
+  from {
+    opacity : 0;
+  }
+
+  to {
+    opacity : 1;
+  }
+}
+
+.fade-in {
+  animation : .3s ease FADE_IN;
+}
+
+@keyframes SHRINK_OUT {
+  50% {
+    opacity   : 1;
+    transform : scale(1);
+  }
+  100% {
+    opacity : 0;
+  }
+}
