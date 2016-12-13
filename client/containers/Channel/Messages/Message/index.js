@@ -45,6 +45,9 @@ const Message = ({ message, prev }) => {
             alt={message.User.userName}
           />
         )}
+        {isContinuation && (
+          <div className="message__meta__time">{timestamp.format('h:mm A')}</div>
+        )}
       </div>
       <div className="message__body">
         {!isContinuation && message.User && (
