@@ -5,7 +5,13 @@ import { App, Archives, Channel } from '../containers';
 import { Login, NotFound } from '../components';
 import Root from '../Root';
 
-const routes = function routes(store) {
+export default (store) => {
+  const requireAuth = function requireAuth(nextState, replace) {
+    if (!store.getState().auth.token) {
+      replace({ pathname: '/' });
+    }
+  };
+
   const authRedirect = function authRedirect(nextState, replace) {
     if (store.getState().auth.token) {
       replace('/archives/');
@@ -15,7 +21,7 @@ const routes = function routes(store) {
   return (
     <Route path="/" component={Root}>
       <Route component={App}>
-        <Route path="archives/" component={Archives}>
+        <Route path="archives/" component={Archives} onEnter={requireAuth}>
           <Route path=":channelId/" component={Channel} />
           <Redirect from=":channelId" to=":channelId/" />
         </Route>
@@ -25,5 +31,3 @@ const routes = function routes(store) {
     </Route>
   );
 };
-
-export default routes;

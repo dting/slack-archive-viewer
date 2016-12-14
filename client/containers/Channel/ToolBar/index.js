@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ChannelStatusIcon } from '../../../components';
 
-const Channel = ({ channel }) => (
+const ToolBar = ({ channel }) => (
   <div className="tool-bar">
     <div className="tool-bar__info">
       <div className="tool-bar__info__channel-name">
@@ -15,11 +15,11 @@ const Channel = ({ channel }) => (
   </div>
 );
 
-Channel.propTypes = {
+ToolBar.propTypes = {
   channel: React.PropTypes.shape({
     channelName: React.PropTypes.string.isRequired,
   }).isRequired,
 };
-Channel.displayName = 'Channel';
+ToolBar.displayName = 'ToolBar';
 
-export default Channel;
+export default ToolBar;

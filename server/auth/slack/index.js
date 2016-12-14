@@ -1,19 +1,25 @@
 const express = require('express');
 const passport = require('passport');
 
-const { setTokenCookie } = require('../auth.service');
+const { sendToken } = require('../auth.service');
+const config = require('../../config/environment');
 
 const router = express.Router();
 
 router
-  .get('/', passport.authenticate('slack', {
-    scope: ['identity.basic', 'identity.email', 'identity.avatar', 'identity.team'],
-    failureRedirect: '/login',
-    session: false,
-  }))
+  .get('/', (req, res, next) => {
+    const callbackURL = `${config.slack.callbackURL}${req.query.jwt ? '/jwt' : ''}`;
+    passport.authenticate('slack', {
+      scope: ['identity.basic', 'identity.email', 'identity.avatar', 'identity.team'],
+      failureRedirect: '/',
+      callbackURL,
+      session: false,
+    })(req, res, next);
+  })
   .get('/callback', passport.authenticate('slack', {
-    failureRedirect: '/login',
+    failureRedirect: '/',
     session: false,
-  }), setTokenCookie);
+  }), sendToken);
+
 
 module.exports = router;

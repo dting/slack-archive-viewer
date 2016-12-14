@@ -23,13 +23,11 @@ const isAuthenticated = [accessTokenHeader, validateJwt, populateReqUser];
 
 const isAuthorized = [isAuthenticated, populateReqUserTeam];
 
-const setTokenCookie = function setTokenCookie(req, res) {
+const sendToken = function sendToken(req, res) {
   if (!req.user) {
     return res.status(404).send('It looks like you aren\'t logged in, please try again.');
   }
-  const token = signToken(req.user._id);
-  res.cookie('token', token);
-  return res.redirect('/');
+  return res.send(signToken(req.user._id));
 };
 
 module.exports = {
@@ -37,7 +35,7 @@ module.exports = {
   isAuthenticated,
   isAuthorized,
   populateReqUser,
-  setTokenCookie,
+  sendToken,
   signToken,
   validateJwt,
 };

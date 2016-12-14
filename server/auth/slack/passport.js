@@ -5,7 +5,6 @@ const setup = function setup(User, config) {
   passport.use(new SlackStrategy({
     clientID: config.slack.clientID,
     clientSecret: config.slack.clientSecret,
-    callbackURL: config.slack.callbackURL,
     scope: ['identity.basic', 'identity.email', 'identity.avatar', 'identity.team'],
   },
   (accessToken, refreshToken, profile, done) => {

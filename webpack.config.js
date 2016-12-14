@@ -9,7 +9,6 @@ const vendor = [
   'lodash',
   'moment',
   'react',
-  'react-cookie',
   'react-dom',
   'react-redux',
   'react-router-redux',
