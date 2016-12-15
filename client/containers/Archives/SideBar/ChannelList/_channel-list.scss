@@ -5,26 +5,8 @@
   flex           : 1;
   flex-direction : column;
 
-  &__heading {
-    @include          heading-font(13px);
-    display         : flex;
-    height          : $side-bar__item__height;
-    min-height      : $side-bar__item__height;
-    padding         : 0 15px;
-    color           : $side-bar__text;
-    text-decoration : none;
-    align-items     : center;
-
-    &--heavy {
-      font-weight : 400;
-    }
-
-    &--light {
-      font-weight : 300;
-    }
-  }
-
-  &__item {
+  a.channel-list__item,
+  span.channel-list__item {
     @include                     overflow-ellipsis();
     @include                     no-outline();
     @include                     subheading-font(15px);
@@ -41,7 +23,7 @@
     align-items                : center;
 
     &__name {
-      margin-left: 2px;
+      margin-left : 2px;
     }
 
     &.active {
@@ -53,6 +35,25 @@
     &:not(.active):focus,
     &:not(.active):hover {
       background-color : $side-bar__item--hover;
+    }
+  }
+
+  &__heading {
+    @include          heading-font(13px);
+    display         : flex;
+    height          : $side-bar__item__height;
+    min-height      : $side-bar__item__height;
+    padding         : 0 15px;
+    color           : $side-bar__text;
+    text-decoration : none;
+    align-items     : center;
+
+    &--heavy {
+      font-weight : 400;
+    }
+
+    &--light {
+      font-weight : 300;
     }
   }
 }

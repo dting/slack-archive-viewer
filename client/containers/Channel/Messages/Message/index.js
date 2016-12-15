@@ -4,6 +4,8 @@ import slackdown from 'slackdown';
 import Remarkable from 'remarkable';
 import hljs from 'highlight.js';
 
+import Attachment from '../Attachment';
+
 const e = document.createElement('div');
 const htmlDecode = function htmlDecode(input) {
   e.innerHTML = input;
@@ -61,9 +63,12 @@ const Message = ({ message, prev }) => {
           </div>
         )}
         <div
-          className={message.subtype}
+          className="message__text"
           dangerouslySetInnerHTML={{ __html }} // eslint-disable-line react/no-danger
         />
+        {message.attachments && message.attachments.map((attachment, i) => (
+          <Attachment key={i} attachment={attachment} />
+        ))}
       </div>
     </div>
   );
