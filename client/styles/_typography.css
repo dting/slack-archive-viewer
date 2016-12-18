@@ -1,8 +1,20 @@
-a, a:link, a:visited {
-  color: #2a80b9;
-  text-decoration: none;
+a,
+a:link,
+a:visited {
+  color           : #2a80b9;
+  text-decoration : none;
 }
 
-a:active, a:focus, a:hover {
-    color: #005e99;
+a:active,
+a:focus,
+a:hover {
+  color : #005e99;
+}
+
+.italic {
+  font-style : italic;
+}
+
+.normal {
+  font-weight : 400!important;
 }

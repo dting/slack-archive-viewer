@@ -73,7 +73,7 @@ h6 {
   margin      : 12px 0;
   color       : inherit;
   font-family : inherit;
-  font-weight : 700;
+  font-weight : 900;
   line-height : 24px;
 }
 
@@ -287,14 +287,21 @@ address {
 
 // App wide style
 
+#app {
+  width  : 100%;
+  height : 100%;
+}
+
 .brand__small {
   font-size      : 18px;
   font-weight    : bolder;
+  line-height    : 18px;
   letter-spacing : -1px;
 }
 
 .brand__medium {
   font-size      : 36px;
   font-weight    : bolder;
+  line-height    : 36px;
   letter-spacing : -2px;
 }

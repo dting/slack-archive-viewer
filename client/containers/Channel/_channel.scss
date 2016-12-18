@@ -1,6 +1,7 @@
 @import "./Day/day",
         "./ToolBar/tool-bar",
-        "./Messages/messages";
+        "./Messages/messages",
+        "./Meta/meta";
 
 .client_main_container {
   display        : flex;
@@ -138,59 +139,6 @@
 .supports_custom_scrollbar #archive_msgs_scroller_div::-webkit-scrollbar-corner,
 .supports_custom_scrollbar #msgs_scroller_div::-webkit-scrollbar-corner {
   background : #fff;
-}
-
-#msgs_scroller_div #end_display_div {
-  margin  : 1rem 0;
-  padding : 1rem;
-}
-
-#msgs_scroller_div #end_display_div #end_display_status {
-  padding    : 1rem;
-  color      : #cecece;
-  text-align : center;
-  font-style : italic;
-}
-
-#msgs_scroller_div #end_display_div #end_display_meta {
-  max-width   : 46.875rem;
-  padding     : 0 1.1rem 0 0;
-  color       : #9e9ea6;
-  font-family : Slack-Lato,
-                appleLogo,
-                sans-serif;
-  font-size   : 1.1rem;
-  line-height : 1.5rem;
-}
-
-#msgs_scroller_div #end_display_div #end_display_meta #im_meta .mpim_notif_prefs .content,
-#msgs_scroller_div #end_display_div #end_display_meta #im_meta .mpim_notif_prefs label {
-  font-size : .9375rem;
-}
-
-#msgs_scroller_div #end_display_div #end_display_meta #im_meta .mpim_notif_prefs input[type=radio] {
-  vertical-align : baseline;
-}
-
-#msgs_scroller_div #end_display_div #end_display_meta i.callout.ts_icon_lightbulb_o::before {
-  font-size : 3rem;
-}
-
-#msgs_scroller_div #end_display_div #end_display_meta h1 {
-  color       : #4d394b;
-  font-size   : 1.875rem;
-  line-height : 1.875rem;
-}
-
-#msgs_scroller_div #end_display_div #end_display_meta h1 .ts_icon_shared_channel {
-  color       : #4d394b;
-  font-size   : 2.0625rem;
-  line-height : 2.0625rem;
-}
-
-#msgs_scroller_div #end_display_div p {
-  margin : 0 auto 1rem;
-  color  : #555459;
 }
 
 .client_container #messages_container {

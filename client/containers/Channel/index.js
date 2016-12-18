@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import ToolBar from './ToolBar';
+import Meta from './Meta';
 import Day from './Day';
 import { actions } from '../../modules';
 
@@ -40,7 +41,10 @@ class Channel extends React.Component {
   }
 
   dayRenderer({ index, style }) {
-    const day = this.props.channel.Days[index];
+    if (index === 0) {
+      return <Meta key="meta" {...this.props.channel} style={style} />;
+    }
+    const day = this.props.channel.Days[index - 1];
     return <Day key={day.channelDayId} day={day} style={style} />;
   }
 
@@ -69,7 +73,7 @@ class Channel extends React.Component {
                               className="msgs_holder"
                               rowHeight={getRowHeight}
                               rowRenderer={this.dayRenderer}
-                              rowCount={this.props.channel.Days.length}
+                              rowCount={this.props.channel.Days.length + 1}
                               width={width}
                               height={height}
                               overscanRowCount={5}

@@ -17,11 +17,13 @@ const createAssociations = function createAssociations(maps, entry) {
 };
 
 const createOrUpdateChannel = function createOrUpdateChannel(maps) {
+  const { people, bots } = maps;
   return entry => Channel
     .upsert({
       slackChannelId: entry.id,
       channelName: entry.name,
       created: new Date(+entry.created * 1000),
+      creator: (people.get(entry.creator) || bots.get(entry.creator)).userId,
       topic: entry.topic,
       purpose: entry.purpose,
       isArchived: entry.is_archived,

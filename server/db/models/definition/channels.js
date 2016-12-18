@@ -23,6 +23,17 @@ module.exports = function exports(sequelize, DataTypes) {
       field: 'created',
       allowNull: false,
     },
+    creator: {
+      type: DataTypes.INTEGER,
+      field: 'fk_creator_id',
+      allowNull: false,
+      references: {
+        model: 'users',
+        key: 'user_id',
+      },
+      onUpdate: 'NO ACTION',
+      onDelete: 'RESTRICT',
+    },
     topic: {
       type: DataTypes.JSONB,
       field: 'topic',
@@ -54,6 +65,10 @@ module.exports.initRelations = function initRelations() {
   const Team = model.Team;
   const User = model.User;
 
+  Channel.belongsTo(User, {
+    as: 'Creator',
+    foreignKey: 'fk_creator_id',
+  });
   Channel.hasMany(Day, {
     foreignKey: 'fk_channel_id',
     onDelete: 'RESTRICT',
