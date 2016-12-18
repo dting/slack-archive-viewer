@@ -17,6 +17,7 @@ class Channel extends React.Component {
       channelId: React.PropTypes.string.isRequired,
     }).isRequired,
     channel: React.PropTypes.shape({
+      channelName: React.PropTypes.string.isRequired,
       Days: React.PropTypes.arrayOf(React.PropTypes.shape({
         _id: React.PropTypes.number.isRequired,
         Messages: React.PropTypes.arrayOf(React.PropTypes.shape({})),
@@ -42,7 +43,7 @@ class Channel extends React.Component {
 
   dayRenderer({ index, style }) {
     if (index === 0) {
-      return <Meta key="meta" {...this.props.channel} style={style} />;
+      return <Meta key={this.props.channel.channelName} {...this.props.channel} style={style} />;
     }
     const day = this.props.channel.Days[index - 1];
     return <Day key={day.channelDayId} day={day} style={style} />;

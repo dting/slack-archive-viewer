@@ -1,9 +1,15 @@
 #end_div {
-  display : flex;
+  display     : flex;
+  height      : 150px;
+  align-items : flex-end;
 }
 
 #msgs_scroller_div #end_display_div {
-  padding : 1rem;
+  margin         : 0;
+  padding        : 1rem;
+  border         : 0;
+  vertical-align : baseline;
+  font-size      : 100%;
 }
 
 #msgs_scroller_div #end_display_div #end_display_meta {

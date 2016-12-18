@@ -18,3 +18,26 @@ a:hover {
 .normal {
   font-weight : 400!important;
 }
+
+small {
+  font-size : 85%;
+}
+
+strong {
+  font-weight : 700;
+}
+
+em {
+  font-style : italic;
+}
+
+cite {
+  font-style : normal;
+}
+
+address {
+  display       : block;
+  margin-bottom : 24px;
+  font-style    : normal;
+  line-height   : 24px;
+}

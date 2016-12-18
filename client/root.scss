@@ -29,10 +29,6 @@ body {
   overflow-y             : hidden;
   background             : #fff;
   font-family            : "Lato",
-                           Helvetica,
-                           "Segoe UI",
-                           Tahoma,
-                           Arial,
                            sans-serif;
   font-size              : 1rem;
   -webkit-font-smoothing : antialiased;
@@ -236,45 +232,6 @@ img {
   border                 : 0;
   vertical-align         : middle;
   -ms-interpolation-mode : bicubic;
-}
-
-.img-rounded {
-  border-radius : 6px;
-}
-
-.img-polaroid {
-  padding          : 4px;
-  border           : 1px solid #ccc;
-  border           : 1px solid rgba(0,0,0,.2);
-  background-color : #fff;
-  box-shadow       : 0 1px 3px rgba(0,0,0,.1);
-}
-
-.img-circle {
-  border-radius : 500px;
-}
-
-small {
-  font-size : 85%;
-}
-
-strong {
-  font-weight : 700;
-}
-
-em {
-  font-style : italic;
-}
-
-cite {
-  font-style : normal;
-}
-
-address {
-  display       : block;
-  margin-bottom : 24px;
-  font-style    : normal;
-  line-height   : 24px;
 }
 
 .page_container {
