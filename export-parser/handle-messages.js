@@ -1,7 +1,12 @@
 const Promise = require('bluebird');
 
-const createOrUpdateMessage = function createOrUpdateMessage(channel, db, maps) {
-  const { Message } = db;
+const { Message } = require('../server/db');
+
+const createAssociations = function createAssociations(channelDay) {
+  return messages => channelDay.setMessages(messages);
+};
+
+const createOrUpdateMessage = function createOrUpdateMessage(maps, channel) {
   const { bots, people, team } = maps;
   const teamId = team.teamId;
   const channelId = channel.channelId;
@@ -22,33 +27,12 @@ const createOrUpdateMessage = function createOrUpdateMessage(channel, db, maps) 
         attachments,
         file,
         text: text || '',
-      });
+      })
+      .then(() => Message.findOne({ where: { ts } }));
   };
 };
 
-const handleChannelMessages = function handleChannelMessages(channelName, db, maps) {
-  const channel = maps.channels.get(channelName);
-  return (filename) => {
-    const messages = require(filename);
-    return Promise.all(messages.map(createOrUpdateMessage(channel, db, maps)))
-      .then(result => [result.filter(Boolean).length, result.length]);
-  };
+module.exports = function handleMessages(maps, channel, messages) {
+  return channelDay => Promise.all(messages.map(createOrUpdateMessage(maps, channel)))
+    .then(createAssociations(channelDay));
 };
-
-const handleChannelDirectory = function handleChannelDirectory(db, maps) {
-  return ([channelName, filenames]) => {
-    const channelDirectories = filenames.map(handleChannelMessages(channelName, db, maps));
-    return Promise.all(channelDirectories)
-      .then(counts => counts.reduce((a, b) => [a[0] + b[0], a[1] + b[1]], [0, 0]))
-      .then(([aggInserted, aggTotal]) => console.log(
-        channelName,
-        `\n  ${aggInserted} new messages...`,
-        `\n  ${aggTotal} total messages...\n`));
-  };
-};
-
-const createOrUpdate = function createOrUpdate(messages, db, maps) {
-  return () => Promise.all(messages.map(handleChannelDirectory(db, maps)));
-};
-
-module.exports = createOrUpdate;

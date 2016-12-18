@@ -1,6 +1,9 @@
 const Promise = require('bluebird');
 
-const createAssociations = function createAssociations(Channel, team, people, bots, entry) {
+const { Channel } = require('../server/db');
+
+const createAssociations = function createAssociations(maps, entry) {
+  const { team, people, bots } = maps;
   return () => Channel
     .findOne({ where: { slackChannelId: entry.id } })
     .then((channel) => {
@@ -13,9 +16,7 @@ const createAssociations = function createAssociations(Channel, team, people, bo
     });
 };
 
-const createOrUpdateChannel = function createOrUpdateChannel(db, maps) {
-  const { Channel } = db;
-  const { team, people, bots } = maps;
+const createOrUpdateChannel = function createOrUpdateChannel(maps) {
   return entry => Channel
     .upsert({
       slackChannelId: entry.id,
@@ -25,7 +26,7 @@ const createOrUpdateChannel = function createOrUpdateChannel(db, maps) {
       purpose: entry.purpose,
       isArchived: entry.is_archived,
     })
-    .then(createAssociations(Channel, team, people, bots, entry));
+    .then(createAssociations(maps, entry));
 };
 
 const populateMapsChannel = function populateMapsChannel(maps) {
@@ -34,9 +35,7 @@ const populateMapsChannel = function populateMapsChannel(maps) {
   );
 };
 
-const createOrUpdate = function createOrUpdate(channels, db, maps) {
-  return () => Promise.all(channels.map(createOrUpdateChannel(db, maps)))
+module.exports = function handleChannels(maps, channels) {
+  return () => Promise.all(channels.map(createOrUpdateChannel(maps)))
     .then(populateMapsChannel(maps));
 };
-
-module.exports = createOrUpdate;

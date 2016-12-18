@@ -20,7 +20,7 @@ class Archives extends React.Component {
 
   render() {
     return (
-      <div className="archives">
+      <div className="archives client_container">
         <SideBar {...this.props} />
         {this.props.children}
       </div>

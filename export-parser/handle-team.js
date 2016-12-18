@@ -1,11 +1,12 @@
 const { prompts } = require('./constants');
 
+const { Team } = require('../server/db');
+
 const populateMapsTeam = function populateMapsTeam(maps) {
   return team => (maps.team = team);
 };
 
-const teamHandler = function teamHandler(users, teamDomain, db, maps) {
-  const { Team } = db;
+module.exports = function handleTeam(maps, users, teamDomain) {
   const slackTeamId = users[0].team_id;
   return () => Team
     .findOne({ where: { slackTeamId } })
@@ -20,5 +21,3 @@ const teamHandler = function teamHandler(users, teamDomain, db, maps) {
     })
     .then(populateMapsTeam(maps));
 };
-
-module.exports = teamHandler;

@@ -3,7 +3,7 @@ import React from 'react';
 import Message from './Message';
 
 const Messages = ({ messages }) => (
-  <div className="messages">
+  <div className="day_msgs">
     {messages.map((message, i) => (
       <Message key={message.id} message={message} prev={messages[i - 1]} />
     ))}

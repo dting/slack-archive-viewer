@@ -3,14 +3,10 @@ import moment from 'moment';
 import slackdown from 'slackdown';
 import Remarkable from 'remarkable';
 import hljs from 'highlight.js';
+import cns from 'classnames';
 
+import { htmlDecode } from '../../../../utils';
 import Attachment from '../Attachment';
-
-const e = document.createElement('div');
-const htmlDecode = function htmlDecode(input) {
-  e.innerHTML = input;
-  return e.childNodes.length === 0 ? '' : e.childNodes[0].nodeValue;
-};
 
 const md = new Remarkable({
   html: true,
@@ -33,42 +29,48 @@ const md = new Remarkable({
 });
 
 const Message = ({ message, prev }) => {
-  const isContinuation = prev && message.User && prev.User &&
-    message.User.userId === prev.User.userId;
+  const first = !prev || (message.User && prev.User && (message.User.userId !== prev.User.userId));
   const timestamp = moment(message.timestamp);
   const __html = md.render(slackdown.parse(message.text || ''));
   return (
     <div className="message">
-      <div className="message__meta">
-        {!isContinuation && message.User && (
-          <img
-            className="message__meta__avatar"
-            src={message.User.profile.image_48}
-            alt={message.User.userName}
-          />
+      <div className="message_gutter">
+        {first && message.User && (
+          <div className="message_icon">
+            <span
+              className="member_image thumb_36"
+              style={{ backgroundImage: `url('${message.User.profile.image_48}')` }}
+              alt={message.User.userName}
+            />
+          </div>
         )}
-        {isContinuation && (
+        {!first && (
           <div className="message__meta__time">{timestamp.format('h:mm A')}</div>
         )}
       </div>
-      <div className="message__body">
-        {!isContinuation && message.User && (
-          <div className="message__info">
-            <div className="message__info__username">
-              {message.User.userName}
-            </div>
-            <div className="message__info__time">
-              {timestamp.format('h:mm A')}
-            </div>
+      <div className="message_content">
+        <div className="message_content_header">
+          <div className="message_content_header_left">
+            {first && message.User && (
+              <div className="message__info">
+                <div className="message_sender">
+                  {message.User.userName}
+                </div>
+                <span className="timestamp">
+                  {timestamp.format('h:mm A')}
+                </span>
+              </div>
+            )}
           </div>
-        )}
-        <div
-          className="message__text"
-          dangerouslySetInnerHTML={{ __html }} // eslint-disable-line react/no-danger
-        />
-        {message.attachments && message.attachments.map((attachment, i) => (
-          <Attachment key={i} attachment={attachment} />
-        ))}
+        </div>
+        <span className={cns('message_body', { first })}>
+          <span
+            dangerouslySetInnerHTML={{ __html }} // eslint-disable-line react/no-danger
+          />
+          {message.attachments && message.attachments.map((attachment, i) => (
+            <Attachment key={i} attachment={attachment} />
+          ))}
+        </span>
       </div>
     </div>
   );

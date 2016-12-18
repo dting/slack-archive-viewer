@@ -1,6 +1,8 @@
 const Promise = require('bluebird');
 
-const createAssociations = function createAssociations(User, team, entry) {
+const { User } = require('../server/db');
+
+const createAssociations = function createAssociations(team, entry) {
   return isInsert => User
     .findOne({ where: { slackUserId: entry.id } })
     .then((user) => {
@@ -11,7 +13,7 @@ const createAssociations = function createAssociations(User, team, entry) {
     });
 };
 
-const createOrUpdateUser = function createOrUpdateUser({ User }, { team }) {
+const createOrUpdateUser = function createOrUpdateUser({ team }) {
   return entry => User
     .upsert({
       slackUserId: entry.id,
@@ -20,7 +22,7 @@ const createOrUpdateUser = function createOrUpdateUser({ User }, { team }) {
       profile: entry.profile,
       isBot: entry.is_bot,
     })
-    .then(createAssociations(User, team, entry));
+    .then(createAssociations(team, entry));
 };
 
 const populateMapsUsers = function populateMapsUsers(maps) {
@@ -39,9 +41,7 @@ const populateMapsUsers = function populateMapsUsers(maps) {
   };
 };
 
-const usersHandler = function usersHandler(users, db, maps) {
-  return () => Promise.all(users.map(createOrUpdateUser(db, maps)))
+module.exports = function handleUser(maps, users) {
+  return () => Promise.all(users.map(createOrUpdateUser(maps)))
     .then(populateMapsUsers(maps));
 };
-
-module.exports = usersHandler;

@@ -5,10 +5,11 @@ const minimist = require('minimist');
 const path = require('path');
 
 const { zipTmpDir, prompts } = require('./constants');
+const db = require('../server/db');
 const handleTeam = require('./handle-team');
 const handleUsers = require('./handle-users');
 const handleChannels = require('./handle-channels');
-const handleMessages = require('./handle-messages');
+const handleFiles = require('./handle-files');
 
 const argv = minimist(process.argv.slice(2));
 const help = argv.h;
@@ -43,23 +44,30 @@ if (!users.length) {
   cleanup(1);
 }
 
-const messages = [];
-zip.getEntries()
-  .filter(entry => entry.isDirectory)
-  .forEach(({ entryName }) => {
-    const files = fs.readdirSync(`${zipTmpDir}/${entryName}`);
-    const channelName = entryName.slice(0, entryName.length - 1);
-    messages.push([channelName, files.map(file => `${zipTmpDir}/${entryName}${file}`)]);
-  });
+/**
+ * Group files by directories, mapping directory (channel) names to the files inside
+ *
+ * Each directory contains json files, named by date, containing messages for a specific channel.
+ */
+const groupFiles = function groupFiles({ entryName }) {
+  const files = fs.readdirSync(`${zipTmpDir}/${entryName}`);
+  return {
+    name: entryName.slice(0, entryName.length - 1),
+    files: files.map(file => ({
+      dateStr: file.split('.')[0],
+      file: `${zipTmpDir}/${entryName}${file}`,
+    })),
+  };
+};
 
+const files = zip.getEntries().filter(entry => entry.isDirectory).map(groupFiles);
 const maps = {};
-const db = require('../server/db');
 
 db.sequelize.sync({ force })
-  .then(handleTeam(users, teamDomain, db, maps))
-  .then(handleUsers(users, db, maps))
-  .then(handleChannels(channels, db, maps))
-  .then(handleMessages(messages, db, maps))
+  .then(handleTeam(maps, users, teamDomain))
+  .then(handleUsers(maps, users))
+  .then(handleChannels(maps, channels))
+  .then(handleFiles(maps, files))
   .then(() => {
     console.log(`${exportFile} successfully processed...`);
     cleanup();

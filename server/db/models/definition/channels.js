@@ -49,10 +49,16 @@ module.exports.initRelations = function initRelations() {
   delete module.exports.initRelations;
   const model = require('../index');
   const Channel = model.Channel;
+  const Day = model.Day;
   const Message = model.Message;
   const Team = model.Team;
   const User = model.User;
 
+  Channel.hasMany(Day, {
+    foreignKey: 'fk_channel_id',
+    onDelete: 'RESTRICT',
+    onUpdate: 'NO ACTION',
+  });
   Channel.hasMany(Message, {
     foreignKey: 'channel_id',
     onDelete: 'RESTRICT',

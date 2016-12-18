@@ -30,7 +30,7 @@ class App extends React.Component {
   render() {
     const { children, user } = this.props;
     return (
-      <div className="app">
+      <div id="client-ui" className="container-fluid flexbox_client">
         {user.loading && (
           <div className="app_loading">
             <div className="brand-medium">Slack Archive Viewer</div>

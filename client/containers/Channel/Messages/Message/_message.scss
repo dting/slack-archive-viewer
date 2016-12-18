@@ -2,11 +2,147 @@ $channel-action__text : rgb(158, 159, 166);
 $mention__text        : lighten(rgb(52, 130, 181), 10);
 
 .message {
-  display       : flex;
-  border-top    : 1px solid transparent;
-  border-bottom : 1px solid transparent;
-  flex-shrink   : 0;
-  word-wrap     : break-word;
+  display        : block;
+  position       : relative;
+  width          : 100%;
+  margin         : 0 auto -.0625rem;
+  padding-top    : .0625rem;
+  padding-right  : 2.5rem;
+  padding-bottom : .125rem;
+  padding-left   : 0;
+  color          : #2c2d30;
+  border-top     : 1px solid transparent;
+  border-right   : none;
+  border-bottom  : 1px solid transparent;
+  border-left    : none;
+  font-family    : 'Lato',
+                   sans-serif;
+  font-size      : .9375rem;
+  line-height    : 1.375rem;
+  word-wrap      : break-word;
+  user-select    : text;
+
+  &_gutter {
+    position   : absolute;
+    top        : 0;
+    left       : 0;
+    width      : 4rem;
+    text-align : right;
+
+    .message_icon {
+      display    : block;
+      margin-top : .25rem;
+
+      .member_image {
+        display           : inline-block;
+        position          : relative;
+        border-radius     : .2rem;
+        background-repeat : no-repeat;
+        background-size   : 100%;
+
+        &.thumb_36 {
+          width  : 2.25rem;
+          height : 2.25rem;
+        }
+      }
+    }
+  }
+
+  &_content {
+    margin-left : 4.5rem;
+  }
+
+  &_content_header {
+    display     : flex;
+    align-items : baseline;
+  }
+
+  &_content_header_left {
+    display      : flex;
+    margin-right : 3.375rem;
+    align-items  : baseline;
+    flex         : 1 1 auto;
+  }
+
+  &_sender {
+    display      : inline;
+    margin-right : .25rem;
+    color        : #2c2d30!important;
+    font-weight  : 900;
+    line-height  : 1.125rem;
+  }
+
+  .timestamp {
+    display      : inline;
+    margin-right : .25rem;
+    color        : #9e9ea6;
+    opacity      : 1;
+    font-size    : .75rem;
+    white-space  : nowrap;
+  }
+
+  &_body {
+    display : block;
+    cursor  : text;
+
+    &.first {
+      margin-top : -.125rem;
+    }
+
+    .channel_archive,
+    .channel_join,
+    .channel_leave,
+    .channel_purpose {
+      color      : $channel-action__text;
+      font-style : italic;
+    }
+
+    .slack-user {
+      color      : $mention__text;
+      font-style : italic;
+
+      &::before {
+        content : '@';
+      }
+    }
+
+    pre {
+      display                : block;
+      margin                 : .5rem 0 .2rem;
+      padding                : .5rem;
+      border                 : 1px solid rgba(0,0,0,.15);
+      border-radius          : 4px;
+      background             : #fbfaf8;
+      font-family            : 'Fira Mono',
+                               monospace!important;
+      font-size              : .75rem;
+      font-variant-ligatures : none;
+      line-height            : 1.15rem;
+      tab-size               : 4;
+      white-space            : pre-wrap;
+      word-break             : normal;
+      word-wrap              : break-word;
+    }
+
+    p > code {
+      padding                : 1px 3px;
+      color                  : #c25;
+      border                 : 1px solid #e1e1e8;
+      border-radius          : 3px;
+      background-color       : #f7f7f9;
+      font-family            : 'Fira Mono',
+                               monospace!important;
+      font-size              : .75rem;
+      font-variant-ligatures : none;
+      line-height            : .75rem;
+      tab-size               : 4;
+      white-space            : normal;
+    }
+
+    hr {
+      margin : 1.25rem 0;
+    }
+  }
 
   &__meta {
     display         : flex;
@@ -35,79 +171,6 @@ $mention__text        : lighten(rgb(52, 130, 181), 10);
       &:hover {
         opacity : 1;
         cursor  : default;
-      }
-    }
-  }
-
-  &__body {
-    display        : flex;
-    margin-left    : 15px;
-    overflow-x     : hidden;
-    font-size      : .9375rem;
-    flex           : 1;
-    flex-direction : column;
-    line-height    : 1.375rem;
-
-    .message__info {
-      display : table;
-
-      &__username {
-        @include   heading-font(15px, 900);
-        display  : table-cell;
-      }
-
-      &__time {
-        @include       subheading-font(12px, 300);
-        display      : table-cell;
-        padding-left : 10px;
-      }
-    }
-
-    pre {
-      padding       : 12.5px;
-      overflow-x    : auto;
-      border        : 1px $channel-action__text solid;
-      border-radius : 4px;
-      background    : white;
-      font-family   : 'Fira Mono',
-                      monospace;
-      font-size     : 12px;
-      white-space   : pre;
-      white-space   : pre-wrap;
-
-      code {
-        padding    : none;
-        border     : none;
-        background : none;
-      }
-    }
-
-    code {
-      padding       : 2px;
-      border        : 1px solid #bebab0;
-      border-radius : 2px;
-      background    : #faf8f0;
-      font-family   : 'Fira Mono',
-                      monospace;
-      font-size     : 12px;
-      white-space   : pre;
-      white-space   : pre-wrap;
-    }
-
-    .channel_archive,
-    .channel_join,
-    .channel_leave,
-    .channel_purpose {
-      color      : $channel-action__text;
-      font-style : italic;
-    }
-
-    .slack-user {
-      color      : $mention__text;
-      font-style : italic;
-
-      &::before {
-        content : '@';
       }
     }
   }

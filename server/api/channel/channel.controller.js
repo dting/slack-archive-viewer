@@ -1,5 +1,5 @@
 const { handleEntityNotFound, handleError, respondWithResult } = require('../../util');
-const { Channel, Message, User } = require('../../db');
+const { Channel, Day, Message, User } = require('../../db');
 
 const controller = {};
 
@@ -16,13 +16,17 @@ controller.get = function index(req, res) {
     .findOne({
       where: { channelId },
       include: [{
-        model: Message,
+        model: Day,
         include: [{
-          model: User,
+          model: Message,
+          include: [{
+            model: User,
+          }],
         }],
       }],
       order: [
-        [Message, 'ts'],
+        [Day, 'date'],
+        [Day, Message, 'ts'],
       ],
     })
     .then(handleEntityNotFound(res))

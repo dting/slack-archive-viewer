@@ -42,6 +42,7 @@ export default function reducer(state = initialState, action = {}) {
     case types.GET_REQUEST:
       return {
         ...state,
+        channel: null,
         loading: true,
       };
     case types.GET_FAILURE:
