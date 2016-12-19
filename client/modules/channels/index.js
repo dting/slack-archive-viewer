@@ -11,11 +11,16 @@ const channelNameComparator = function channelNameComparator(a, b) {
   return 0;
 };
 
+const mapNamesToId = function mapNamesToId(channels) {
+  return new Map(channels.map(channel => [channel.channelName, channel.channelId]));
+};
+
 const initialState = {
   loading: null,
   error: null,
   channels: [],
   channel: null,
+  nameToId: null,
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -33,10 +38,12 @@ export default function reducer(state = initialState, action = {}) {
       };
     case types.LIST_SUCCESS: {
       const channels = action.payload.sort(channelNameComparator);
+      const nameToId = mapNamesToId(channels);
       return {
         ...state,
         loading: false,
         channels,
+        nameToId,
       };
     }
     case types.GET_REQUEST:

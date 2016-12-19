@@ -1,5 +1,5 @@
 @import "./Day/day",
-        "./ToolBar/tool-bar",
+        "./Header/header",
         "./Messages/messages",
         "./Meta/meta";
 
@@ -190,4 +190,16 @@
 
 .client_container #col_messages>.row-fluid {
   flex : 1;
+}
+
+#client_body:not(.onboarding):before {
+  z-index       : 200;
+  content       : '';
+  box-sizing    : border-box;
+  position      : absolute;
+  right         : 0;
+  left          : 220px;
+  height        : 8px;
+  border-bottom : 1px solid #e8e8e8;
+  background    : #fff;
 }

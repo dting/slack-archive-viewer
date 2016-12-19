@@ -45,17 +45,17 @@ class UserMenu extends React.PureComponent {
     const { logout, user } = this.props;
     const userName = user.name;
     const teamName = user.slack.team.name;
-    const toggleClassName = classNames('user_menu__toggle', this.state);
-    const dropdownClassName = classNames('user_menu__dropdown', this.state);
+    const toggleClassName = classNames('team_menu__toggle', this.state);
+    const dropdownClassName = classNames('team_menu__dropdown', this.state);
     return (
-      <div className="user_menu" ref={node => (this.node = node)}>
+      <div className="team_menu" ref={node => (this.node = node)}>
         <button className={toggleClassName} onClick={this.toggle}>
           <div className="brand__small">{teamName}</div>
           <div className="user_name">{userName}</div>
         </button>
         <div className={dropdownClassName}>
-          <button className="user_menu__item" onClick={logout}>Sign out</button>
-          <button className="user_menu__item">Preferences</button>
+          <button className="team_menu__item" onClick={logout}>Sign out</button>
+          <button className="team_menu__item">Preferences</button>
         </div>
       </div>
     );

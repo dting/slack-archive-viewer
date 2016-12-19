@@ -1,0 +1,15 @@
+@import "./Channels/channels",
+        "./TeamMenu/team-menu";
+
+#col_channels_bg {
+  position   : absolute;
+  top        : 0;
+  bottom     : 0;
+  left       : 0;
+  background : $user-menu__background;
+}
+
+.client_channels_list_container {
+  display: block;
+  position: relative;
+}

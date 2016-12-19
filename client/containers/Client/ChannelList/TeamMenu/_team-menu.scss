@@ -1,6 +1,6 @@
 $menu__background : #fff;
 
-.user_menu {
+.team_menu {
   display  : flex;
   position : relative;
   width    : $side-bar__width;
@@ -38,6 +38,7 @@ $menu__background : #fff;
     left             : 0;
     width            : $side-bar__width;
     border-right     : 1px $user-menu__background--hover solid;
+    border-bottom    : 1px $user-menu__background--hover solid;
     background-color : $menu__background;
     flex-direction   : column;
 

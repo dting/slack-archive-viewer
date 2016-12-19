@@ -10,7 +10,7 @@ const list = function list() {
 
 
 /**
- * Retrieves channels list
+ * Retrieves channel by channelId
  */
 const get = function get(channelId) {
   return (dispatch, getState) => withToken(rsaas.get, channelId)(dispatch, getState);

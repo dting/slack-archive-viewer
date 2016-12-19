@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import ToolBar from './ToolBar';
+import Header from './Header';
 import Meta from './Meta';
 import Day from './Day';
 import { actions } from '../../modules';
@@ -14,7 +14,7 @@ class Channel extends React.Component {
       get: React.PropTypes.func.isRequired,
     }).isRequired,
     params: React.PropTypes.shape({
-      channelId: React.PropTypes.string.isRequired,
+      channelName: React.PropTypes.string.isRequired,
     }).isRequired,
     channel: React.PropTypes.shape({
       channelName: React.PropTypes.string.isRequired,
@@ -29,14 +29,14 @@ class Channel extends React.Component {
     super(props);
     this.dayRenderer = this.dayRenderer.bind(this);
 
-    const { channelActions, params } = props;
-    channelActions.get(params.channelId);
+    const { channelActions, nameToIdMap, params } = props;
+    channelActions.get(nameToIdMap.get(params.channelName));
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.params.channelId !== this.props.params.channelId) {
-      const { channelActions, params } = this.props;
-      channelActions.get(params.channelId)
+    if (prevProps.params.channelName !== this.props.params.channelName) {
+      const { channelActions, nameToIdMap, params } = this.props;
+      channelActions.get(nameToIdMap.get(params.channelName))
         .then(() => this.list.recomputeRowHeights());
     }
   }
@@ -52,7 +52,7 @@ class Channel extends React.Component {
   render() {
     return (
       <div className="client_main_container">
-        {this.props.channel && <ToolBar {...this.props} />}
+        {this.props.channel && <Header {...this.props} />}
         {this.props.channel && this.props.channel.Days.length && (
           <div id="client_body">
             <div id="col_messages">
@@ -96,6 +96,7 @@ class Channel extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  nameToIdMap: state.channels.nameToId,
   channel: state.channels.channel,
 });
 

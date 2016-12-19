@@ -2,14 +2,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import SideBar from './SideBar';
+import ChannelList from './ChannelList';
 import { actions } from '../../modules';
 
-class Archives extends React.Component {
+class Client extends React.Component {
+  static displayName = 'Client';
   static propTypes = {
     channelActions: React.PropTypes.shape({
       list: React.PropTypes.func.isRequired,
     }).isRequired,
+    channelsLoaded: React.PropTypes.bool.isRequired,
     children: React.PropTypes.node,
   };
 
@@ -20,9 +22,9 @@ class Archives extends React.Component {
 
   render() {
     return (
-      <div className="archives client_container">
-        <SideBar {...this.props} />
-        {this.props.children}
+      <div className="client_container">
+        <ChannelList {...this.props} />
+        {this.props.channelsLoaded && this.props.children}
       </div>
     );
   }
@@ -30,7 +32,8 @@ class Archives extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  channelList: state.channels,
+  channels: state.channels,
+  channelsLoaded: !!state.channels.channels.length,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -38,4 +41,4 @@ const mapDispatchToProps = dispatch => ({
   logout: bindActionCreators(actions.auth.logout, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Archives);
+export default connect(mapStateToProps, mapDispatchToProps)(Client);

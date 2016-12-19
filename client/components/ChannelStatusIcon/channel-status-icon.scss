@@ -1,16 +1,25 @@
 .channel-status-icon {
   &--archived {
-    display         : flex;
-    width           : 15px;
-    align-items     : center;
-    font-size       : 0.8em;
-    justify-content : center;
+    display     : block;
+    width       : 12px;
+    float       : left;
+    margin-top  : 1px;
+    margin-right: 1px;
+    text-align  : center;
+    font-size   : .7rem;
+    font-weight : 300;
+    line-height : 1.5rem;
   }
 
   &--active {
-    display         : flex;
-    width           : 15px;
-    font-weight     : 300;
-    justify-content : center;
+    display     : block;
+    width       : 12px;
+    float       : left;
+    margin-top  : 1px;
+    margin-right: 1px;
+    text-align  : center;
+    font-size   : 1rem;
+    font-weight : 300;
+    line-height : 1.5rem;
   }
 }

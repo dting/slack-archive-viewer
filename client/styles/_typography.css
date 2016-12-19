@@ -1,3 +1,151 @@
+.tiny {
+  font-size : .7rem;
+}
+
+.small {
+  font-size : .9rem;
+}
+
+.no_pointer_events {
+  pointer-events : none;
+}
+
+body {
+  -moz-osx-font-smoothing : grayscale;
+  font-variant-ligatures  : common-ligatures;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin                 : 0 0 1rem;
+  color                  : #555459;
+  font-family            : 'Lato',
+                           sans-serif;
+  font-weight            : 900;
+  -webkit-font-smoothing : antialiased;
+}
+
+h1 {
+  font-size   : 1.8rem;
+  line-height : 2.3rem;
+}
+
+h2 {
+  font-size   : 1.5rem;
+  line-height : 2rem;
+}
+
+h3 {
+  font-size   : 1.125rem;
+  font-weight : 700;
+  line-height : 1.5rem;
+}
+
+h4 {
+  margin-bottom : .5rem;
+  font-size     : 1rem;
+  line-height   : 1.25rem;
+}
+
+h5 {
+  margin-bottom  : 0;
+  text-transform : uppercase;
+  font-size      : .8125rem;
+  font-weight    : 700;
+}
+
+p {
+  margin : 0 0 1rem;
+}
+
+p.heading {
+  max-width   : 85%;
+  margin      : 2rem auto 2.5rem;
+  font-size   : 2rem;
+  font-weight : 300;
+  line-height : 2.75rem;
+}
+
+p.emphasized {
+  font-size   : 1.2rem;
+  line-height : 1.5rem;
+}
+
+p.large_text {
+  font-size   : 1.4rem;
+  line-height : 1.8rem;
+}
+
+p.small_text {
+  font-size   : .8rem;
+  line-height : 1rem;
+}
+
+p.small,
+span.small {
+  font-size : 1rem;
+}
+
+.para_break {
+  display : block;
+  height  : .5rem;
+}
+
+h1 a,
+h1 a:active,
+h1 a:hover,
+h1 a:link,
+h1 a:visited {
+  color : #555459;
+}
+
+a,
+a:link,
+a:visited {
+  color : #007ab8;
+}
+
+a:active,
+a:focus,
+a:hover {
+  color : #005e99;
+}
+
+li {
+  margin      : 0;
+  line-height : 1.5rem;
+}
+
+ul.no_bullets {
+  margin : 0 0 2rem;
+}
+
+ul.no_bullets li {
+  padding         : 0;
+  line-height     : 1.25rem;
+  list-style-type : none;
+}
+
+div.special_formatting_quote {
+  margin : .25rem 0;
+}
+
+.bullet {
+  color : #DDD;
+}
+
+blockquote {
+  margin  : 0 0 .5rem 1rem;
+  padding : 0;
+  border  : none;
+}
+
+hr {
+  border-top : 1px solid #DDD;
+}
+
 a,
 a:link,
 a:visited {
@@ -19,10 +167,6 @@ a:hover {
   font-weight : 400!important;
 }
 
-small {
-  font-size : 85%;
-}
-
 strong {
   font-weight : 700;
 }
@@ -40,4 +184,15 @@ address {
   margin-bottom : 24px;
   font-style    : normal;
   line-height   : 24px;
+}
+
+.display_flex {
+  display: flex;
+}
+
+.overflow_ellipsis {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }

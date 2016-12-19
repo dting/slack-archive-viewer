@@ -26,6 +26,8 @@ controller.get = function index(req, res) {
       }, {
         model: User,
         as: 'Creator',
+      }, {
+        model: User,
       }],
       order: [
         [Day, 'date'],

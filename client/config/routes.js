@@ -1,7 +1,7 @@
 import { Route, IndexRoute, Redirect } from 'react-router';
 import React from 'react';
 
-import { App, Archives, Channel } from '../containers';
+import { App, Client, Channel } from '../containers';
 import { Login, NotFound } from '../components';
 import Root from '../Root';
 
@@ -14,16 +14,16 @@ export default (store) => {
 
   const authRedirect = function authRedirect(nextState, replace) {
     if (store.getState().auth.token) {
-      replace('/archives/');
+      replace('/messages/');
     }
   };
 
   return (
     <Route path="/" component={Root}>
       <Route component={App}>
-        <Route path="archives/" component={Archives} onEnter={requireAuth}>
-          <Route path=":channelId/" component={Channel} />
-          <Redirect from=":channelId" to=":channelId/" />
+        <Route path="messages/" component={Client} onEnter={requireAuth}>
+          <Route path=":channelName/" component={Channel} />
+          <Redirect from=":channelName" to=":channelName/" />
         </Route>
       </Route>
       <IndexRoute component={Login} onEnter={authRedirect} />

@@ -1,0 +1,99 @@
+.channels_list_holder {
+  .section_holder {
+    position : relative;
+    width    : inherit;
+  }
+
+  h2 {
+    display        : block;
+    position       : relative;
+    width          : 165px;
+    margin         : 0 1rem .1rem;
+    color          : #FFFFFF !important;
+    opacity        : 0.6;
+    overflow       : hidden;
+    text-align     : left;
+    text-transform : uppercase;
+    text-overflow  : ellipsis;
+    font-size      : .8rem;
+    font-weight    : 700;
+    line-height    : 1.25rem;
+    white-space    : nowrap;
+
+    .channel_list_header_label {
+      display        : block;
+      color          : inherit;
+      outline        : 0;
+      text-align     : left;
+      text-transform : inherit;
+    }
+
+    .header_count {
+      opacity : .5;
+    }
+  }
+
+  ul {
+    width           : 12.75rem;
+    max-width       : calc(260px - 16px);
+    margin          : 0 1px 0 0;
+    text-align      : left;
+    list-style-type : none;
+
+    li {
+      position     : relative;
+      height       : 1.5rem;
+      clear        : both;
+      margin-right : 1px;
+      overflow     : hidden;
+      font-size    : 1rem;
+      line-height  : 1.5rem;
+
+      .channel_name,
+      >a {
+        display                    : block;
+        height                     : 1.5rem;
+        padding                    : 0 .25rem 0 1rem;
+        border-top-left-radius     : 0;
+        border-top-right-radius    : .25rem;
+        border-bottom-right-radius : .25rem;
+        border-bottom-left-radius  : 0;
+        background-clip            : padding-box;
+        text-decoration            : none!important;
+      }
+
+      >a {
+        color   : #FFFFFF !important;
+        opacity : 0.6;
+      }
+
+      &.active>a {
+        color      : #FFFFFF !important;
+        opacity    : 1;
+        background : $side-bar__item--active;
+      }
+    }
+  }
+}
+
+.client_container #col_channels {
+  position    : absolute;
+  top         : $header__height;
+  bottom      : 0;
+  width       : 100%;
+  min-height  : 0;
+  margin-left : 0;
+  overflow    : hidden;
+  background  : $side-bar__background;
+
+  a {
+    color       : #FFFFFF !important;
+    text-shadow : none !important;
+  }
+}
+
+#channels_scroller {
+  padding    : 0 0 5rem;
+  overflow-x : hidden;
+  overflow-y : scroll;
+}
