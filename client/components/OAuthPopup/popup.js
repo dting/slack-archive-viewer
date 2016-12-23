@@ -42,6 +42,9 @@ function getPopupSize(provider) {
     case 'yahoo':
       return { width: 559, height: 519 };
 
+    case 'slack':
+      return { width: 495, height: 645 };
+
     default:
       return { width: 1020, height: 618 };
   }

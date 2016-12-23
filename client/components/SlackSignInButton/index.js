@@ -4,7 +4,7 @@ import OAuthPopup from '../OAuthPopup';
 import slackButtonImage from './sign_in_with_slack.png';
 
 const SlackSignInButton = () => (
-  <OAuthPopup provider="Slack" url={'/auth/slack/'}>
+  <OAuthPopup provider="slack" url={'/auth/slack/'}>
     <img alt="sign_in_with_slack" src={slackButtonImage} />
   </OAuthPopup>
 );

@@ -55,7 +55,7 @@ class OAuthPopup extends React.PureComponent {
       if (token) {
         this.cleanup();
         this.props.setToken(token)
-          .then(() => this.props.replace('/archives/'))
+          .then(() => this.props.replace('/messages/'))
           .catch(() => this.props.replace('/'));
       }
     }
