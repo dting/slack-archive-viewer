@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
 
-class UserMenu extends React.PureComponent {
+class TeamMenu extends React.PureComponent {
+  static displayName = 'TeamMenu';
   static propTypes = {
     logout: React.PropTypes.func.isRequired,
     user: React.PropTypes.shape({
@@ -62,4 +63,4 @@ class UserMenu extends React.PureComponent {
   }
 }
 
-export default UserMenu;
+export default TeamMenu;

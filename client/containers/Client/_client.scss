@@ -1,5 +1,7 @@
 @import './ChannelList/channel-list';
+@import './PlaceholderChannelList/placeholder-channel-list';
 
 .client_container {
+  display : flex;
   flex: 1;
 }

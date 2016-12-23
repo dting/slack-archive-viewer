@@ -6,10 +6,11 @@
   top        : 0;
   bottom     : 0;
   left       : 0;
+  width      : 100%;
   background : $user-menu__background;
 }
 
 .client_channels_list_container {
-  display: block;
-  position: relative;
+  display  : block;
+  position : relative;
 }

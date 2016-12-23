@@ -1,0 +1,93 @@
+#col_channels .placeholder_shimmer_clipper {
+  width : 170px;
+}
+
+.placeholder_shimmer_clipper {
+  z-index  : 1;
+  display  : block;
+  position : absolute;
+  top      : 0;
+  bottom   : 0;
+  left     : 0;
+  width    : 100%;
+  opacity  : 0.3;
+
+  .placeholder_shimmer_bg {
+    position                  : absolute;
+    top                       : 0;
+    left                      : -100%;
+    width                     : 75%;
+    height                    : 100%;
+    background-image          : linear-gradient(
+                                  to right,
+                                  rgba(255,255,255,0) 0,
+                                  rgba(255,255,255,.5) 50%,
+                                  rgba(255,255,255,0) 100%
+                                );
+    animation-delay           : 3s;
+    animation-duration        : 1.5s;
+    animation-iteration-count : infinite;
+    animation-name            : placeholderShimmer;
+  }
+}
+
+.team_menu.placeholder {
+  display        : flex;
+  flex-direction : column;
+
+  .placeholder_user_name {
+    width            : 55%;
+    height           : 10px;
+    margin-top       : 10px;
+    margin-left      : 40px;
+    opacity          : 0.3;
+    border-radius    : 10px;
+    background-color : white;
+
+    &::before {
+      content          : '';
+      position         : absolute;
+      left             : 15px;
+      width            : 20px;
+      height           : 10px;
+      border-radius    : 10px;
+      background-color : white;
+    }
+  }
+
+  .placeholder_team_name {
+    width            : 70%;
+    height           : 10px;
+    margin-top       : 15px;
+    margin-left      : 15px;
+    opacity          : 0.5;
+    border-radius    : 12px;
+    background-color : white;
+  }
+}
+
+.channels_list_holder.placeholder {
+  .placeholder_channel_long {
+    width            : 80%;
+    height           : 10px;
+    margin-top       : 10px;
+    margin-left      : 15px;
+    opacity          : 0.3;
+    border-radius    : 12px;
+    background-color : white;
+  }
+
+  .placeholder_channel_short {
+    width            : 75%;
+    height           : 10px;
+    margin-top       : 10px;
+    margin-left      : 15px;
+    opacity          : 0.3;
+    border-radius    : 12px;
+    background-color : white;
+  }
+
+  .spacer {
+    height : 30px;
+  }
+}

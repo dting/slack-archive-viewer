@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import React from 'react';
 import cns from 'classnames';
 
-import { ChannelStatusIcon, NavLink } from '../../../../components';
+import { ChannelStatusIcon } from '../../../../components';
 
 const Channels = ({ channels, params }) => (
   <div id="col_channels" className="channels_list_holder">
@@ -26,16 +26,16 @@ const Channels = ({ channels, params }) => (
             {channels.channels && channels.channels.map(channel => (
               <li
                 key={channel.channelId}
-                className={cns('channel', {active: channel.channelName === params.channelName })}
+                className={cns('channel', { active: channel.channelName === params.channelName })}
               >
                 <Link to={`/messages/${channel.channelName}/`} className="channel_name">
                   <ChannelStatusIcon channel={channel} />
-            			<span className="display_flex">
-            				<span className="overflow_ellipsis">
+                  <span className="display_flex">
+                    <span className="overflow_ellipsis">
                       {channel.channelName}
-            				</span>
-            			</span>
-            		</Link>
+                    </span>
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
@@ -52,6 +52,9 @@ Channels.propTypes = {
       channelName: React.PropTypes.string.isRequired,
     })).isRequired,
   }).isRequired,
+  params: React.PropTypes.shape({
+    channelName: React.PropTypes.string,
+  }),
 };
 Channels.displayName = 'Channels';
 
