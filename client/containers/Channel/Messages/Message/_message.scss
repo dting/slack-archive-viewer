@@ -22,6 +22,17 @@ $mention__text        : lighten(rgb(52, 130, 181), 10);
   word-wrap      : break-word;
   user-select    : text;
 
+  &:hover {
+    background : #f9f9f9;
+
+    .message_gutter {
+      .timestamp {
+        @include transition;
+        opacity : 1;
+      }
+    }
+  }
+
   &_gutter {
     position   : absolute;
     top        : 0;
@@ -45,6 +56,12 @@ $mention__text        : lighten(rgb(52, 130, 181), 10);
           height : 2.25rem;
         }
       }
+    }
+
+    .timestamp {
+      color       : #9e9ea6;
+      opacity     : 0;
+      line-height : 1.125rem;
     }
   }
 
@@ -76,7 +93,6 @@ $mention__text        : lighten(rgb(52, 130, 181), 10);
     display      : inline;
     margin-right : .25rem;
     color        : #9e9ea6;
-    opacity      : 1;
     font-size    : .75rem;
     white-space  : nowrap;
   }
@@ -140,42 +156,11 @@ $mention__text        : lighten(rgb(52, 130, 181), 10);
     }
 
     p {
-      margin: 0;
+      margin : 0;
     }
 
     hr {
       margin : 1.25rem 0;
-    }
-  }
-
-  &__meta {
-    display         : flex;
-    width           : 45px;
-    min-width       : 45px;
-    margin-top      : .25rem;
-    justify-content : flex-end;
-
-    &__avatar {
-      width         : 38px;
-      height        : 38px;
-      border-radius : 4px;
-    }
-
-    &__time {
-      @include          transition;
-      display         : flex;
-      margin-top      : -.125rem;
-      opacity         : 0;
-      align-items     : center;
-      align-items     : flex-start;
-      font-size       : 10px;
-      justify-content : flex-end;
-      line-height     : 1.375rem;
-
-      &:hover {
-        opacity : 1;
-        cursor  : default;
-      }
     }
   }
 }

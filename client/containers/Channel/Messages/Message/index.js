@@ -45,7 +45,7 @@ const Message = ({ message, prev }) => {
           </div>
         )}
         {!first && (
-          <div className="message__meta__time">{timestamp.format('h:mm A')}</div>
+          <div className="timestamp">{timestamp.format('h:mm A')}</div>
         )}
       </div>
       <div className="message_content">
