@@ -3,19 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import Header from './Header';
+import Header from '../Header';
 import Meta from './Meta';
 import Day from './Day';
 import { actions } from '../../modules';
 
-class Channel extends React.Component {
+class Main extends React.Component {
+  static displayName = 'Main';
   static propTypes = {
-    channelActions: React.PropTypes.shape({
-      get: React.PropTypes.func.isRequired,
-    }).isRequired,
-    params: React.PropTypes.shape({
-      channelName: React.PropTypes.string.isRequired,
-    }).isRequired,
     channel: React.PropTypes.shape({
       channelName: React.PropTypes.string.isRequired,
       Days: React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -23,6 +18,13 @@ class Channel extends React.Component {
         Messages: React.PropTypes.arrayOf(React.PropTypes.shape({})),
       })),
     }),
+    channelActions: React.PropTypes.shape({
+      get: React.PropTypes.func.isRequired,
+    }).isRequired,
+    nameToIdMap: React.PropTypes.shape({}).isRequired,
+    params: React.PropTypes.shape({
+      channelName: React.PropTypes.string.isRequired,
+    }).isRequired,
   };
 
   constructor(props) {
@@ -104,4 +106,4 @@ const mapDispatchToProps = dispatch => ({
   channelActions: bindActionCreators(actions.channels, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Channel);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

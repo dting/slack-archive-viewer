@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { ChannelStatusIcon } from '../../../components';
+import { ChannelStatusIcon } from '../../components';
 
 const Header = ({ channel }) => (
   <div id="client-header">

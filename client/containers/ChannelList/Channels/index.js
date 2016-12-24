@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import React from 'react';
 import cns from 'classnames';
 
-import { ChannelStatusIcon } from '../../../../components';
+import { ChannelStatusIcon } from '../../../components';
 
 const Channels = ({ channels, params }) => (
   <div id="col_channels" className="channels_list_holder">

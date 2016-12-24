@@ -1,7 +1,7 @@
 import { Route, IndexRoute, Redirect } from 'react-router';
 import React from 'react';
 
-import { Client, Channel } from '../containers';
+import { Client, Main } from '../containers';
 import { Login, NotFound } from '../components';
 import Root from '../Root';
 
@@ -22,7 +22,7 @@ export default (store) => {
     <Route path="/" component={Root}>
       <Route onEnter={requireAuth}>
         <Route path="messages/" component={Client}>
-          <Route path=":channelName/" component={Channel} />
+          <Route path=":channelName/" component={Main} />
           <Redirect from=":channelName" to=":channelName/" />
         </Route>
       </Route>

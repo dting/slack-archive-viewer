@@ -2,8 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import ChannelList from './ChannelList';
-import PlaceholderChannelList from './PlaceholderChannelList';
+import { ChannelList, PlaceholderChannelList } from '../../containers';
 import { actions } from '../../modules';
 
 class Client extends React.Component {

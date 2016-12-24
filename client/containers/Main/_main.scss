@@ -1,7 +1,6 @@
-@import "./Day/day",
-        "./Header/header",
-        "./Messages/messages",
-        "./Meta/meta";
+@import "./Day/day";
+@import "./Messages/messages";
+@import "./Meta/meta";
 
 .client_main_container {
   display        : flex;
