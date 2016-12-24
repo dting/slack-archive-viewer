@@ -12,7 +12,7 @@ ChannelStatusIcon.propTypes = {
   channel: React.PropTypes.shape({
     isArchived: React.PropTypes.bool.isRequired,
   }).isRequired,
-  style: React.PropTypes.shape({}).isRequired,
+  style: React.PropTypes.shape({}),
 };
 
 export default ChannelStatusIcon;

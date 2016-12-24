@@ -65,6 +65,10 @@
       >a {
         color   : #FFFFFF !important;
         opacity : 0.6;
+
+        &:hover {
+          background : $side-bar__item--hover;
+        }
       }
 
       &.active>a {
