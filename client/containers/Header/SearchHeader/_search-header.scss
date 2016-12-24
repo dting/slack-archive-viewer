@@ -1,0 +1,156 @@
+.flexbox_client {
+  .flex_header {
+    width     : 30%;
+    max-width : 500px;
+    padding   : 0 10px 0 0;
+  }
+
+  .icon_search {
+    z-index      : 1;
+    position     : relative;
+    top          : 0;
+    left         : 0;
+    width        : 1.0625rem;
+    height       : 1.0625rem;
+    margin-right : -1.5625rem;
+    margin-left  : .5rem;
+    color        : #717274;
+    opacity      : 1;
+    text-shadow  : none;
+    font-size    : .9rem;
+    flex         : none;
+  }
+}
+
+.icon_search_wrap,
+.search_clear_icon_wrap {
+  width : 30px;
+}
+
+.icon_search,
+.search_clear_icon {
+  display : block;
+  width   : 17px;
+  height  : 17px;
+  margin  : 0 auto;
+}
+
+.search_clear_icon {
+  color : #9e9ea6;
+}
+
+.flex_header {
+  display     : flex;
+  width       : 19.6875rem;
+  height      : 2.125rem;
+  margin      : 2px 0 0;
+  padding     : 0 10px 0 2px;
+  align-items : center;
+  transition  : width .15s ease-out 0s;
+}
+
+#search_container {
+  z-index  : 0;
+  position : relative;
+  margin   : 0 7px 0 0;
+  flex     : 1;
+
+  .search_input {
+    display        : block;
+    width          : 100%;
+    height         : auto;
+    margin         : 0;
+    padding-top    : 0;
+    padding-right  : 0!important;
+    padding-bottom : 0;
+    padding-left   : 0!important;
+    border         : none;
+    border-radius  : 0;
+    vertical-align : middle;
+    font-size      : 15px;
+    flex           : 1;
+    transition     : width .15s ease-out 0s;
+  }
+}
+
+input[type=text] {
+  width                  : 100%;
+  max-width              : 100%;
+  color                  : #555459;
+  outline                : 0;
+  box-shadow             : none;
+  -webkit-font-smoothing : antialiased;
+  font-variant-ligatures : none;
+  line-height            : normal;
+}
+
+.no_bottom_margin {
+  margin-bottom : 0!important;
+}
+
+form {
+  margin : 0 0 24px;
+}
+
+.highlighter_wrapper {
+  display     : flex;
+  align-items : baseline;
+  font-size   : 15px;
+  flex        : 1;
+}
+
+.search_form {
+  display       : flex;
+  height        : 34px;
+  padding       : 2px 0;
+  border        : 1px solid rgba(113,114,116,.5);
+  border-radius : .35rem;
+  align-items   : center;
+
+  &:hover {
+    border-color : #2d9ee0;
+  }
+}
+
+#header_search_form .highlighter_underlay {
+  border-width : 1px!important;
+}
+
+.channel_header .highlighter_underlay {
+  flex : 1;
+}
+
+.highlighter_underlay {
+  z-index        : 1;
+  display        : inline-block;
+  position       : relative;
+  color          : transparent!important;
+  overflow       : hidden;
+  border-color   : transparent!important;
+  border-style   : solid;
+  vertical-align : middle;
+  font-size      : .9375rem;
+  line-height    : 2;
+  white-space    : pre;
+  user-select    : none;
+}
+
+.search_input_highlighted {
+  z-index          : 2;
+  position         : relative;
+  background-color : transparent!important;
+}
+
+@media screen
+       and (min-width : 1441px) {
+  .flex_header {
+    width : 25.9375rem;
+  }
+}
+
+@media screen
+       and (min-width : 1367px) {
+  .flex_header {
+    width : 22.8125rem;
+  }
+}
