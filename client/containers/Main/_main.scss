@@ -92,7 +92,7 @@
 
 .supports_custom_scrollbar #msgs_div {
   overflow-x   : hidden;
-  overflow-y   : scroll;
+  overflow-y   : scroll!important;
   border-right : .25rem solid transparent;
 }
 
