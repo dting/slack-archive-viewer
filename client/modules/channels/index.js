@@ -23,7 +23,7 @@ const initialState = {
   nameToId: null,
 };
 
-export default function reducer(state = initialState, action = {}) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.LIST_REQUEST:
       return {

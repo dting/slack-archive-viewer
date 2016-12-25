@@ -3,3 +3,4 @@ export { default as Client } from './Client';
 export { default as Header } from './Header';
 export { default as Main } from './Main';
 export { default as PlaceholderChannelList } from './PlaceholderChannelList';
+export { default as Search } from './Search';

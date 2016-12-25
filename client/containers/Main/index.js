@@ -6,6 +6,7 @@ import React from 'react';
 import Header from '../Header';
 import Meta from './Meta';
 import Day from './Day';
+import { Search } from '../../containers';
 import { actions } from '../../modules';
 
 class Main extends React.Component {
@@ -24,6 +25,7 @@ class Main extends React.Component {
     nameToIdMap: React.PropTypes.shape({}).isRequired,
     params: React.PropTypes.shape({
       channelName: React.PropTypes.string.isRequired,
+      searchTerms: React.PropTypes.string,
     }).isRequired,
   };
 
@@ -82,14 +84,15 @@ class Main extends React.Component {
                               overscanRowCount={5}
                               channel={this.props.channel}
                             />
-                          )}
+                            )}
                         </CellMeasurer>
                       </div>
-                    )}
+                      )}
                   </AutoSizer>
                 </div>
               </div>
             </div>
+            {this.props.params.searchTerms && <Search {...this.props} />}
           </div>
         )}
       </div>

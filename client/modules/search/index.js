@@ -1,28 +1,30 @@
-import authTypes from '../auth/constants';
 import types from './constants';
 
 const initialState = {
   loading: null,
-  name: null,
-  slack: null,
-  _id: null,
+  messages: [],
+  files: [],
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case types.ME_REQUEST:
+    case types.LOCAL_SEARCH_RESULTS:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    case types.SEARCH_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case types.ME_SUCCESS:
+    case types.SEARCH_SUCCESS:
       return {
         ...state,
         loading: null,
         ...action.payload,
       };
-    case authTypes.LOG_OUT:
-    case types.ME_FAILURE:
+    case types.SEARCH_FAILURE:
       return initialState;
     default:
       return state;

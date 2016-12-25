@@ -1,0 +1,100 @@
+.flexbox_client #col_flex {
+  display    : flex;
+  width      : 30%;
+  max-width  : 500px;
+  margin-top : .5625rem;
+  background : #fff;
+}
+
+.supports_custom_scrollbar #client-ui #flex_contents {
+  margin-right : 0;
+}
+
+#client-ui #flex_contents {
+  width      : 100%;
+  margin     : .25rem;
+  margin-top : .0625rem;
+}
+
+#flex_contents {
+  overflow : hidden;
+}
+
+.inline_block {
+  display : inline-block!important;
+}
+
+#flex_contents .heading {
+  z-index                 : 50;
+  position                : relative;
+  width                   : calc(100% - 4px)!important;
+  height                  : auto;
+  min-height              : 2.75rem;
+  margin-top              : .1875rem;
+  padding                 : 1rem .75rem;
+  color                   : #555459;
+  border-bottom           : none;
+  border-top-left-radius  : .375rem;
+  border-top-right-radius : .375rem;
+  background              : #f7f7f7;
+  font-size               : 1.4rem;
+  font-weight             : 400;
+  line-height             : 1.4rem;
+}
+
+#flex_contents .heading a.close_flexpane {
+  float : right;
+}
+
+#flex_contents .heading a {
+  display         : inline-block;
+  color           : #555459;
+  text-decoration : none;
+}
+
+.small_left_margin {
+  margin-left : .5rem!important;
+}
+
+.tab_panels .panel.active {
+  display : block;
+}
+
+.tab_panels .panel {
+  width : 100%;
+}
+
+#search_filters {
+  border-bottom : none;
+}
+
+#search_filters.files #filter_files,
+#search_filters.messages #filter_messages {
+  color         : #555459;
+  border-bottom : 4px solid #2ab27b;
+}
+
+#search_filters #filter_messages {
+  margin-right : -5px;
+}
+
+#search_filters button {
+  display         : inline-block;
+  width           : 50%;
+  padding         : .5rem 1rem;
+  color           : #9e9ea6;
+  border          : none;
+  border-bottom   : 4px solid transparent;
+  background      : #fff;
+  text-align      : center;
+  text-decoration : none;
+  font-family     : 'Lato',
+                    sans-serif;
+  font-size       : .85rem;
+  font-weight     : 700;
+  transition      : .1s;
+
+  &:focus {
+    outline : none;
+  }
+}
