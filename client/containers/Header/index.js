@@ -5,7 +5,7 @@ import SearchHeader from './SearchHeader';
 import { ChannelStatusIcon } from '../../components';
 
 const Header = ({ channel }) => (
-  <div id="client-header">
+  <div id="client_header">
     <div className="channel_header">
       <div className="messages_header">
         <div className="channel_title">

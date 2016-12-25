@@ -1,5 +1,6 @@
-import classNames from 'classnames';
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
+import classNames from 'classnames';
 
 class TeamMenu extends React.PureComponent {
   static displayName = 'TeamMenu';
@@ -46,17 +47,22 @@ class TeamMenu extends React.PureComponent {
     const { logout, user } = this.props;
     const userName = user.name;
     const teamName = user.slack.team.name;
-    const toggleClassName = classNames('team_menu__toggle', this.state);
-    const dropdownClassName = classNames('team_menu__dropdown', this.state);
+    const toggleClassName = classNames('team_menu_toggle', this.state);
+    const dropdownClassName = classNames('team_menu_dropdown', this.state);
     return (
-      <div className="team_menu" ref={node => (this.node = node)}>
+      <div id="team_menu" ref={node => (this.node = node)}>
         <button className={toggleClassName} onClick={this.toggle}>
-          <div className="brand__small">{teamName}</div>
-          <div className="user_name">{userName}</div>
+          <div className="team_name_container">
+            <span id="team_name" className="overflow_ellipsis">{teamName}</span>
+          </div>
+          <div id="presence_container">
+            <FontAwesome name="circle-o" style={{ opacity: 0.98 }} id="presence" />
+          </div>
+          <span id="team_header_user_name" className="current_user_name overflow_ellipsis">{userName}</span>
         </button>
         <div className={dropdownClassName}>
-          <button className="team_menu__item" onClick={logout}>Sign out</button>
-          <button className="team_menu__item">Preferences</button>
+          <button className="team_menu_item" onClick={logout}>Sign out</button>
+          <button className="team_menu_item">Preferences</button>
         </div>
       </div>
     );
