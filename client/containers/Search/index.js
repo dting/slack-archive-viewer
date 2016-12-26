@@ -1,23 +1,27 @@
-import FontAwesome from 'react-fontawesome';
+import { AutoSizer } from 'react-virtualized';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import moment from 'moment';
+import FontAwesome from 'react-fontawesome';
 import React from 'react';
 
+import Message from '../Main/Messages/Message';
 import { actions } from '../../modules';
 
 class Search extends React.Component {
   static displayName = 'Search';
   static propTypes = {
-    search: React.PropTypes.shape({
+    searchResults: React.PropTypes.shape({
       messages: React.PropTypes.arrayOf(React.PropTypes.shape({})),
       files: React.PropTypes.arrayOf(React.PropTypes.shape({})),
+      searchTerms: React.PropTypes.string.isRequired,
     }),
     params: React.PropTypes.shape({
       channelName: React.PropTypes.string.isRequired,
       searchTerms: React.PropTypes.string.isRequired,
     }),
-    searchActions: React.PropTypes.shape({
+    searchResultsActions: React.PropTypes.shape({
       channel: React.PropTypes.func.isRequired,
     }).isRequired,
   };
@@ -26,8 +30,6 @@ class Search extends React.Component {
     super(props);
     this.setMessagesTab = this.setTab.bind(this, 'messages');
     this.setFilesTab = this.setTab.bind(this, 'files');
-    const { searchActions } = props;
-    searchActions.channel(props.params.searchTerms);
     this.state = {
       selectedTab: 'messages',
     };
@@ -35,8 +37,8 @@ class Search extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.params.searchTerms !== this.props.params.searchTerms) {
-      const { searchActions } = this.props;
-      searchActions.channel(this.props.params.searchTerms);
+      const { searchResultsActions } = this.props;
+      searchResultsActions.channel();
       this.state = { selectedTab: 'messages' };
     }
   }
@@ -65,13 +67,51 @@ class Search extends React.Component {
               <div id="search_tabs">
                 <div id="search_filters" className={this.state.selectedTab}>
                   <button id="filter_messages" onClick={this.setMessagesTab}>
-                    Messages ({`${this.props.search.messages.length}`})
+                    Messages ({`${this.props.searchResults.messages.length}`})
                   </button>
                   <button id="filter_files" onClick={this.setFilesTab}>
-                    Files (({`${this.props.search.files.length}`})
+                    Files (({`${this.props.searchResults.files.length}`})
                   </button>
                 </div>
               </div>
+
+              <AutoSizer>
+                {({ height, width }) => (
+                  <div id="search_results" className="flex_content_scroller" style={{ height, width }}>
+                    <div id="search_results_items">
+                      {!this.props.searchResults.messages.length && (
+                        <p className="no_results">
+                          No messages found matching:<br />
+                          <strong>{`${this.props.searchResults.searchTerms}`}</strong>.
+                        </p>
+                      )}
+                      {this.props.searchResults.messages.length && (
+                        <div id="search_message_results">
+                          {this.props.searchResults.messages.map(message => (
+                            <div className="search_message_result" key={message.ts}>
+                              <div className="search_message_result_meta display_flex black indifferent_grey align_items_end">
+                                <div className="small_right_margin">
+                                  #{this.props.params.channelName}
+                                </div>
+                                <div className="date_links flex_none auto_left_margin normal">
+                                  <span className="search_message_item_timestamp">
+                                    {moment(message.timestamp).format('MMM Do')}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="search_message_result_text">
+                                <div className="search_result_with_extract">
+                                  <Message message={message} />
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </AutoSizer>
             </div>
           </div>
         </div>
@@ -81,11 +121,11 @@ class Search extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  search: state.search,
+  searchResults: state.searchResults,
 });
 
 const mapDispatchToProps = dispatch => ({
-  searchActions: bindActionCreators(actions.search, dispatch),
+  searchResultsActions: bindActionCreators(actions.searchResults, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

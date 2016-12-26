@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import SearchHeader from './SearchHeader';
 import { ChannelStatusIcon } from '../../components';
 
-const Header = ({ channel }) => (
+const Header = ({ channel, params }) => (
   <div id="client_header">
     <div className="channel_header">
       <div className="messages_header">
@@ -35,7 +35,7 @@ const Header = ({ channel }) => (
           <div className="divider_bar" />
         </div>
       </div>
-      <SearchHeader />
+      <SearchHeader channelName={params.channelName} searchTerms={params.searchTerms} />
     </div>
   </div>
 );
@@ -44,6 +44,10 @@ Header.displayName = 'Header';
 Header.propTypes = {
   channel: React.PropTypes.shape({
     channelName: React.PropTypes.string.isRequired,
+  }).isRequired,
+  params: React.PropTypes.shape({
+    channelName: React.PropTypes.string,
+    searchTerms: React.PropTypes.string,
   }).isRequired,
 };
 

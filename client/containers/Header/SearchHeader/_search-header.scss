@@ -36,7 +36,14 @@
 }
 
 .search_clear_icon {
-  color : #9e9ea6;
+  padding    : 0;
+  color      : #9e9ea6;
+  border     : none;
+  background : none;
+
+  &:focus {
+    outline : none;
+  }
 }
 
 .flex_header {

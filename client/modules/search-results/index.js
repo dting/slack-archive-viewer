@@ -4,6 +4,7 @@ const initialState = {
   loading: null,
   messages: [],
   files: [],
+  searchTerms: '',
 };
 
 export default function reducer(state = initialState, action) {

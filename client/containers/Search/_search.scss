@@ -1,5 +1,6 @@
 .flexbox_client #col_flex {
   display    : flex;
+  position   : relative;
   width      : 30%;
   max-width  : 500px;
   margin-top : .5625rem;
@@ -96,5 +97,156 @@
 
   &:focus {
     outline : none;
+  }
+}
+
+#search_results_container {
+  position    : absolute;
+  top         : 0;
+  bottom      : 0;
+  width       : calc(100% - 4px)!important;
+  margin-left : 0;
+  overflow    : hidden;
+}
+
+#client-ui #search_results_container .flex_content_scroller {
+  padding-left : 0;
+}
+
+#search_results_container .flex_content_scroller {
+  padding : 0 0.25rem 0 .5rem;
+}
+
+.flex_content_scroller {
+  margin       : 0 0 1rem;
+  overflow-x   : hidden;
+  overflow-y   : auto;
+  border-right : .25rem solid transparent;
+  word-wrap    : break-word;
+}
+
+#search_results_items {
+  margin-top    : .25rem;
+  margin-right  : .0625rem;
+  margin-bottom : 0;
+  margin-left   : 0;
+  padding       : 0;
+}
+
+.no_results {
+  margin      : 2rem 1rem;
+  color       : #717274;
+  text-align  : center;
+  font-size   : 1rem;
+  line-height : 1.25rem;
+}
+
+.search_message_result:first-child {
+  padding-top : 0;
+  border-top  : none;
+}
+
+.search_message_result {
+  position    : relative;
+  margin      : 0 .5rem 8px 0;
+  padding     : 8px .25rem 0;
+  color       : #3d3c40;
+  border      : none;
+  border-top  : 2px solid #F5F5F5;
+  background  : #fff;
+  font-size   : .9375rem;
+  line-height : 1.125rem;
+  word-wrap   : break-word;
+  user-select : text;
+  cursor      : pointer;
+}
+
+.search_message_result .search_message_result_meta {
+  margin    : .1rem .25rem 0;
+  color     : #AAA;
+  font-size : 1rem;
+}
+
+.indifferent_grey {
+  color : #555459!important;
+}
+
+.align_items_end {
+  align-items : flex-end;
+}
+
+.display_flex {
+  display : flex;
+}
+
+.black {
+  font-weight : 900!important;
+}
+
+.search_message_result_meta .date_links {
+  float       : right;
+  margin-top  : 1px;
+  font-family : "Helvetica Neue",
+                Helvetica,
+                "Segoe UI",
+                Tahoma,
+                Arial,
+                sans-serif;
+  font-size   : .75rem;
+}
+
+.flex_none {
+  flex : none;
+}
+
+.auto_left_margin {
+  margin-left : auto!important;
+}
+
+.normal {
+  font-weight : 400!important;
+}
+
+.search_message_result_text {
+  position   : relative;
+  margin-top : .125rem;
+
+  .message {
+    .message_gutter {
+      width   : 2rem;
+      padding : .25rem;
+
+      .message_icon .member_image.thumb_36 {
+        width  : 2rem;
+        height : 2rem;
+      }
+    }
+
+    .message_content {
+      margin-left : 2.75rem;
+    }
+
+    &:hover {
+      background : inherit;
+    }
+  }
+}
+
+.search_result_with_extract {
+  z-index        : 3;
+  position       : relative;
+  margin-top     : .3125rem;
+  padding-right  : .5rem;
+  padding-bottom : .25rem;
+  padding-left   : .5rem;
+  overflow       : hidden;
+  border         : 1px solid #e3e3e3;
+  border-radius  : .375rem;
+  background     : #FFF;
+  box-shadow     : 0 1px 10px #e3e3e3;
+  transition     : border-color .1s;
+
+  &:hover {
+    border : 1px solid #439fe0;
   }
 }

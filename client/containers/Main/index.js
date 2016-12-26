@@ -27,6 +27,12 @@ class Main extends React.Component {
       channelName: React.PropTypes.string.isRequired,
       searchTerms: React.PropTypes.string,
     }).isRequired,
+    searchResults: React.PropTypes.shape({
+      searchTerms: React.PropTypes.string,
+    }).isRequired,
+    searchResultsActions: React.PropTypes.shape({
+      channel: React.PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   constructor(props) {
@@ -37,11 +43,19 @@ class Main extends React.Component {
     channelActions.get(nameToIdMap.get(params.channelName));
   }
 
+  componentWillReceiveProps(newProps) {
+    const { searchResults, searchResultsActions } = this.props;
+    const { channel, params: { searchTerms } } = newProps;
+    if (channel &&
+      (searchResults.searchTerms !== searchTerms || searchResults.searchTerms !== searchTerms)) {
+      searchResultsActions.channel(searchTerms);
+    }
+  }
+
   componentDidUpdate(prevProps) {
-    if (prevProps.params.channelName !== this.props.params.channelName) {
-      const { channelActions, nameToIdMap, params } = this.props;
-      channelActions.get(nameToIdMap.get(params.channelName))
-        .then(() => this.list.recomputeRowHeights());
+    const { channelActions, nameToIdMap, params } = this.props;
+    if (prevProps.params.channelName !== params.channelName) {
+      channelActions.get(nameToIdMap.get(params.channelName));
     }
   }
 
@@ -103,10 +117,12 @@ class Main extends React.Component {
 const mapStateToProps = state => ({
   nameToIdMap: state.channels.nameToId,
   channel: state.channels.channel,
+  searchResults: state.searchResults,
 });
 
 const mapDispatchToProps = dispatch => ({
   channelActions: bindActionCreators(actions.channels, dispatch),
+  searchResultsActions: bindActionCreators(actions.searchResults, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
