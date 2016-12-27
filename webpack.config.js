@@ -6,15 +6,21 @@ const paths = require('./config/paths');
 
 const vendor = [
   'classnames',
+  'highlight.js',
+  'isomorphic-fetch',
   'lodash',
   'moment',
-  'react',
+  'react-addons-shallow-compare',
   'react-dom',
+  'react-fontawesome',
   'react-redux',
   'react-router-redux',
-  'redux',
+  'react-router',
+  'react-virtualized',
+  'react',
   'redux-api-middleware',
   'redux-thunk',
+  'redux',
   'slackdown',
 ];
 
@@ -24,7 +30,7 @@ const common = {
     vendor,
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.[hash:6].js',
     publicPath: '/',
   },
   resolve: {
