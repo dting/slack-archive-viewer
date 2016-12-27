@@ -39,3 +39,4 @@ jspm_packages
 tmp/
 *.zip
 .env
+public

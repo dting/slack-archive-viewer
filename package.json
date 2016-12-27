@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "NODE_ENV=development nodemon -r dotenv/config --watch server server/index.js",
+    "clean": "rimraf public",
+    "build": "NODE_ENV=production webpack -p --config ./webpack.config.js --progress --profile --colors",
+    "build:clean": "npm run clean && npm run build",
     "parse": "rimraf tmp && node export-parser/index.js",
     "lint:client": "eslint client",
     "lint:server": "eslint server",

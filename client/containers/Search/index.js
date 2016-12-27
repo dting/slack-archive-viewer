@@ -74,7 +74,6 @@ class Search extends React.Component {
                   </button>
                 </div>
               </div>
-
               <AutoSizer>
                 {({ height, width }) => (
                   <div id="search_results" className="flex_content_scroller" style={{ height, width }}>
@@ -94,9 +93,9 @@ class Search extends React.Component {
                                   #{this.props.params.channelName}
                                 </div>
                                 <div className="date_links flex_none auto_left_margin normal">
-                                  <span className="search_message_item_timestamp">
+                                  <button className="search_message_item_timestamp">
                                     {moment(message.timestamp).format('MMM Do')}
-                                  </span>
+                                  </button>
                                 </div>
                               </div>
                               <div className="search_message_result_text">
