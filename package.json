@@ -9,7 +9,7 @@
     "clean": "rimraf public",
     "build": "NODE_ENV=production webpack -p --config ./webpack.config.js --progress --profile --colors",
     "build:clean": "npm run clean && npm run build",
-    "parse": "rimraf tmp && node export-parser/index.js",
+    "parse": "rimraf tmp && node -r dotenv/config export-parser/index.js",
     "lint:client": "eslint client",
     "lint:server": "eslint server",
     "lint:parser": "eslint export-parser",
