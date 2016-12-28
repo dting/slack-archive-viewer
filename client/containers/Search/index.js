@@ -1,7 +1,7 @@
-import { AutoSizer } from 'react-virtualized';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import cns from 'classnames';
 import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
 import React from 'react';
@@ -32,6 +32,7 @@ class Search extends React.Component {
     this.setFilesTab = this.setTab.bind(this, 'files');
     this.state = {
       selectedTab: 'messages',
+      expanded: null,
     };
   }
 
@@ -39,13 +40,27 @@ class Search extends React.Component {
     if (prevProps.params.searchTerms !== this.props.params.searchTerms) {
       const { searchResultsActions } = this.props;
       searchResultsActions.channel();
-      this.state = { selectedTab: 'messages' };
+      this.state = {
+        selectedTab: 'messages',
+        expanded: null,
+      };
     }
   }
 
   setTab(selectedTab) {
     if (this.state.selectedTab !== selectedTab) {
       this.setState({ selectedTab });
+    }
+  }
+
+  expandResult(expanded) {
+    if (window.getSelection().toString()) {
+      return;
+    }
+    if (expanded === this.state.expanded) {
+      this.setState({ expanded: null });
+    } else {
+      this.setState({ expanded });
     }
   }
 
@@ -74,43 +89,42 @@ class Search extends React.Component {
                   </button>
                 </div>
               </div>
-              <AutoSizer>
-                {({ height, width }) => (
-                  <div id="search_results" className="flex_content_scroller" style={{ height, width }}>
-                    <div id="search_results_items">
-                      {!this.props.searchResults.messages.length && (
-                        <p className="no_results">
-                          No messages found matching:<br />
-                          <strong>{`${this.props.searchResults.searchTerms}`}</strong>.
-                        </p>
-                      )}
-                      {this.props.searchResults.messages.length && (
-                        <div id="search_message_results">
-                          {this.props.searchResults.messages.map(message => (
-                            <div className="search_message_result" key={message.ts}>
-                              <div className="search_message_result_meta display_flex black indifferent_grey align_items_end">
-                                <div className="small_right_margin">
-                                  #{this.props.params.channelName}
-                                </div>
-                                <div className="date_links flex_none auto_left_margin normal">
-                                  <button className="search_message_item_timestamp">
-                                    {moment(message.timestamp).format('MMM Do')}
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="search_message_result_text">
-                                <div className="search_result_with_extract">
-                                  <Message message={message} />
-                                </div>
-                              </div>
+              <div id="search_results" className="flex_content_scroller">
+                <div id="search_results_items">
+                  {!this.props.searchResults.messages.length && (
+                    <p className="no_results">
+                      No messages found matching:<br />
+                      <strong>{`${this.props.searchResults.searchTerms}`}</strong>.
+                    </p>
+                  )}
+                  {this.props.searchResults.messages.length && (
+                    <div id="search_message_results">
+                      {this.props.searchResults.messages.map(message => (
+                        <div className="search_message_result" key={message.ts}>
+                          <div className="search_message_result_meta display_flex black indifferent_grey align_items_end">
+                            <div className="small_right_margin">
+                                    #{this.props.params.channelName}
                             </div>
-                          ))}
+                            <div className="date_links flex_none auto_left_margin normal">
+                              <button className="search_message_item_timestamp">
+                                {moment(message.timestamp).format('MMM Do')}
+                              </button>
+                            </div>
+                          </div>
+                          <div className="search_message_result_text">
+                            <div // eslint-disable-line jsx-a11y/no-static-element-interactions
+                              className={cns('search_result_with_extract', { expanded: message.ts === this.state.expanded })}
+                              onClick={() => this.expandResult(message.ts)}
+                            >
+                              <Message message={message} />
+                            </div>
+                          </div>
                         </div>
-                      )}
+                      ))}
                     </div>
-                  </div>
-                )}
-              </AutoSizer>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
